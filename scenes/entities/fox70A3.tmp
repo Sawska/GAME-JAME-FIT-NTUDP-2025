@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://0jlvbngjxeyt"]
+
+[ext_resource type="Script" path="res://scripts/entities/fox.gd" id="1_s5isx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8bdrd"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_apinf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_uypxc"]
+size = Vector3(0.1, 0.1, 2)
+
+[node name="Fox" type="CharacterBody3D"]
+script = ExtResource("1_s5isx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_8bdrd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_apinf")
+
+[node name="head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.685802, 0)
+
+[node name="Camera3D" type="Camera3D" parent="head"]
+transform = Transform3D(1, 0, 0, 0, 0.96363, 0.267238, 0, -0.267238, 0.96363, 0, 2, 3)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+mesh = SubResource("BoxMesh_uypxc")

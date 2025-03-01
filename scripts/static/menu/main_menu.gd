@@ -3,6 +3,7 @@ extends Control
 const TEMP_SCENE_FOR_TESTING: Resource = preload("res://scenes/static/temp_scene_for_testing.tscn")
 
 func _on_btn_new_game_pressed() -> void:
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
 	get_tree().change_scene_to_packed(TEMP_SCENE_FOR_TESTING)
 
 
