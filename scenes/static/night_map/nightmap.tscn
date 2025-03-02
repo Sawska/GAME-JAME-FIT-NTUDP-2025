@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://dwfmtkc6wggsx"]
+
+[ext_resource type="PackedScene" uid="uid://0jlvbngjxeyt" path="res://scenes/entities/fox.tscn" id="1_d7d1x"]
+[ext_resource type="Texture2D" uid="uid://bujn031s2rxev" path="res://resources/maps/night sky.jpg" id="1_rl2r1"]
+[ext_resource type="Texture2D" uid="uid://cv0r5u77fldb7" path="res://resources/maps/grass.jpg" id="2_3pa8r"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_b0psb"]
+panorama = ExtResource("1_rl2r1")
+
+[sub_resource type="Sky" id="Sky_nqxpv"]
+sky_material = SubResource("PanoramaSkyMaterial_b0psb")
+
+[sub_resource type="Environment" id="Environment_q3jj2"]
+background_mode = 2
+sky = SubResource("Sky_nqxpv")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkffu"]
+albedo_color = Color(0, 0.235294, 0, 1)
+albedo_texture = ExtResource("2_3pa8r")
+uv1_scale = Vector3(15, 15, 15)
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_iuace"]
+material = SubResource("StandardMaterial3D_gkffu")
+size = Vector2(200, 200)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_vgkyu"]
+data = PackedVector3Array(100, 0, 100, -100, 0, 100, 100, 0, -100, -100, 0, 100, -100, 0, -100, 100, 0, -100)
+
+[node name="nightmap" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_q3jj2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 10.2574, 0)
+light_energy = 0.515
+shadow_enabled = true
+sky_mode = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_iuace")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_vgkyu")
+
+[node name="Fox" parent="." instance=ExtResource("1_d7d1x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.153707, 2.792, 4.62701)
