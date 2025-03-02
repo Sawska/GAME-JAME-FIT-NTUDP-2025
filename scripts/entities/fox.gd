@@ -1,8 +1,9 @@
 extends CharacterBody3D
+const MAIN_MENU = preload("res://scenes/static/menu/main_menu.tscn")
 
 @export_group("Camera settings")
 @export var MOUSE_SENS: float = 0.25
-@export var CAMERA_DISTANCE: float = 8
+@export var CAMERA_DISTANCE: float = 8.0
 @export_group("Movement settings")
 @export var SPEED: float = 8.0
 @export var ACCELERATION: float = 20.0
@@ -45,13 +46,20 @@ func _physics_process(delta: float) -> void:
 		LastDir =  MoveDir
 	var TargetAngle: float = Vector3.BACK.signed_angle_to(LastDir, Vector3.UP)
 	collision_shape_3d.rotation.y = lerp_angle(collision_shape_3d.rotation.y, TargetAngle, ROTATION * delta)
-	$MeshInstance3D.rotation.y = collision_shape_3d.rotation.y
+	$FoxModel.rotation.y = collision_shape_3d.rotation.y
 	
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y += JUMP_STRENGTH
-
 
 func _unhandled_input(event: InputEvent) -> void:
 	if (event is InputEventMouseMotion and								#waiting for mouse event inside window
 		Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED):
 		CameraInpDir = event.relative * MOUSE_SENS 						#screen_relative
+	if (event is InputEventKey and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED):
+		if (Input.is_action_just_pressed("ui_esc")):
+			get_tree().change_scene_to_file("res://scenes/static/menu/main_menu.tscn")
+		if Input.is_action_pressed("ui_accept") and is_on_floor():
+			velocity.y += JUMP_STRENGTH
+	if (event is InputEventMouseButton):
+		if (Input.is_action_just_pressed("ui_scrlup")):
+			$head/SpringArm3D.spring_length = clamp($head/SpringArm3D.spring_length - 0.5, 0.0, 10.0)
+		if (Input.is_action_just_pressed("ui_scrldown")):
+			$head/SpringArm3D.spring_length = clamp($head/SpringArm3D.spring_length + 0.5, 0.0, 10.0)

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cxth2afp2563d"
-path="res://.godot/imported/scene.gltf-016a601a1b3a6413675fecba0e8cfc15.scn"
+uid="uid://b5slytlxgya7x"
+path="res://.godot/imported/FoxTrot.glb-95746d4d7fb7206106a10d2578f8143f.scn"
 
 [deps]
 
-source_file="res://resources/models/scene.gltf"
-dest_files=["res://.godot/imported/scene.gltf-016a601a1b3a6413675fecba0e8cfc15.scn"]
+source_file="res://resources/models/FoxTrot/FoxTrot.glb"
+dest_files=["res://.godot/imported/FoxTrot.glb-95746d4d7fb7206106a10d2578f8143f.scn"]
 
 [params]
 

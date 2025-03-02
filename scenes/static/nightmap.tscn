@@ -49,3 +49,9 @@ shape = SubResource("ConcavePolygonShape3D_vgkyu")
 
 [node name="Fox" parent="." instance=ExtResource("1_d7d1x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.153707, 2.792, 4.62701)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+size = Vector3(20, 1, 20)

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b5slytlxgya7x" path="res://resources/models/FoxTrot/FoxTrot.glb" id="2_i7jf8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8bdrd"]
-radius = 0.546396
+radius = 0.229
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ocf50"]
 
