@@ -1,5 +1,4 @@
 extends CharacterBody3D
-#piscaa
 
 @export_group("Camera settings")
 @export var MOUSE_SENS: float = 0.25
