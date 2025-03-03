@@ -35,6 +35,10 @@ text = "New game"
 layout_mode = 2
 text = "Danya's map"
 
+[node name="BtnCavemap" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Cave map"
+
 [node name="BtnAboutAuthors" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "About authors"
@@ -46,5 +50,6 @@ text = "Quit
 
 [connection signal="pressed" from="VBoxContainer/BtnNewGame" to="." method="_on_btn_new_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/BtnDanyasmap" to="." method="_on_btn_danyasmap_pressed"]
+[connection signal="pressed" from="VBoxContainer/BtnCavemap" to="." method="_on_btn_cavemap_pressed"]
 [connection signal="pressed" from="VBoxContainer/BtnAboutAuthors" to="." method="_on_btn_about_authors_pressed"]
 [connection signal="pressed" from="VBoxContainer/BtnQuit" to="." method="_on_btn_quit_pressed"]
