@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccrq12eysoyje"]
+
+[ext_resource type="PackedScene" uid="uid://4mrr7je22wj4" path="res://scenes/static/temp_scene_for_testing.tscn" id="1_0810c"]
+[ext_resource type="Script" path="res://scripts/entities/fox_bot.gd" id="2_id8u0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fub6o"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0fcup"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="temp_scene_for_testing" parent="." instance=ExtResource("1_0810c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.645513)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.29402)
+script = ExtResource("2_id8u0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("SphereShape3D_fub6o")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0865738)
+
+[node name="FoxDetector" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FoxDetector"]
+shape = SubResource("WorldBoundaryShape3D_0fcup")

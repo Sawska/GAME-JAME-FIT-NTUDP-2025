@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwfmtkc6wggsx"]
+[gd_scene load_steps=11 format=3 uid="uid://dwfmtkc6wggsx"]
 
 [ext_resource type="PackedScene" uid="uid://0jlvbngjxeyt" path="res://scenes/entities/fox.tscn" id="1_d7d1x"]
 [ext_resource type="Texture2D" uid="uid://cv0r5u77fldb7" path="res://resources/maps/grass.jpg" id="2_3pa8r"]
+[ext_resource type="Texture2D" uid="uid://d2ugltrj1i6l4" path="res://resources/IMG_1017.JPG" id="3_fylei"]
+[ext_resource type="AudioStream" uid="uid://br2f5msbky1tn" path="res://resources/scream-noise-142446.mp3" id="4_qe5hb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cy1ev"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -79,6 +81,15 @@ size = Vector3(12.7275, 12.3086, 7.11035)
 
 [node name="Fox" parent="." instance=ExtResource("1_d7d1x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.3253, 14.4488, -88.3436)
+
+[node name="FoxTimer" type="Timer" parent="Fox"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Fox"]
+
+[node name="FoxTimerLabel" type="Label" parent="Fox/CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "FFF"
 
 [node name="mountains" type="Node" parent="."]
 
@@ -292,3 +303,15 @@ size = Vector3(116.14, 11.4449, 2.87262)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.623, 5.87097, -141.89)
 use_collision = true
 size = Vector3(117.254, 11.7232, 3.96637)
+
+[node name="ScreamImage" type="TextureRect" parent="."]
+anchors_preset = -1
+anchor_top = -0.359
+offset_left = -1590.0
+offset_top = -800.368
+offset_right = 2442.0
+offset_bottom = 1235.0
+texture = ExtResource("3_fylei")
+
+[node name="ScreamSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_qe5hb")

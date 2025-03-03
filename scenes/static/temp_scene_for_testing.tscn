@@ -1,6 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://4mrr7je22wj4"]
+[gd_scene load_steps=10 format=3 uid="uid://4mrr7je22wj4"]
 
 [ext_resource type="Script" path="res://scripts/static/temp_scene_for_testing.gd" id="1_s1834"]
+[ext_resource type="Script" path="res://scripts/entities/chicken_bot.gd" id="2_fiuwj"]
+[ext_resource type="Script" path="res://scripts/entities/yorchik_bot.gd" id="3_sipgn"]
+[ext_resource type="Script" path="res://scripts/entities/fox_bot.gd" id="4_61h5a"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_doucs"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -14,6 +17,10 @@ background_mode = 2
 sky = SubResource("Sky_1ct1y")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bg1en"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ub31s"]
 
 [node name="temp_scene_for_testing" type="Node3D"]
 script = ExtResource("1_s1834")
@@ -87,3 +94,58 @@ size = Vector3(2.92749, 0.1, 3)
 [node name="CSGBox3D13" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, -6.28984, 4.96371, -3.44438)
 size = Vector3(2.92749, 0.1, 3)
+
+[node name="Chicken" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.36681)
+script = ExtResource("2_fiuwj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Chicken"]
+shape = SubResource("SphereShape3D_bg1en")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Chicken"]
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0865738)
+
+[node name="FoxDetector" type="Area3D" parent="Chicken"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.1132)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Chicken/FoxDetector"]
+shape = SubResource("WorldBoundaryShape3D_ub31s")
+
+[node name="Dog" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.00122)
+script = ExtResource("3_sipgn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dog"]
+shape = SubResource("SphereShape3D_bg1en")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Dog"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.678453, 0, 0.0865736)
+
+[node name="FoxDetector" type="Area3D" parent="Dog"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.1132)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dog/FoxDetector"]
+shape = SubResource("WorldBoundaryShape3D_ub31s")
+
+[node name="Fox" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0291305, 0.0383825, 7.78262)
+script = ExtResource("4_61h5a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fox"]
+shape = SubResource("SphereShape3D_bg1en")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Fox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0865738)
+
+[node name="FoxDetector" type="Area3D" parent="Fox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.1132)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fox/FoxDetector"]
+shape = SubResource("WorldBoundaryShape3D_ub31s")
+
+[node name="ChickenDetector" type="Area3D" parent="Fox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.1132)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fox/ChickenDetector"]
+shape = SubResource("WorldBoundaryShape3D_ub31s")
