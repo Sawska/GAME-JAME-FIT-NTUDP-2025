@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://43iyenrmlp87"]
 
 [ext_resource type="Script" path="res://scripts/static/fox_hole.gd" id="1_6p8kg"]
-[ext_resource type="PackedScene" uid="uid://br6wa3mxnnfbx" path="res://resources/models/FoxHole/FoxHole.glb" id="1_187gu"]
+[ext_resource type="PackedScene" uid="uid://drxhjrmqyfw5y" path="res://resources/models/FoxHole/FoxHole.glb" id="1_187gu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wd3ij"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -69,7 +69,7 @@ light_indirect_energy = 13.15
 light_size = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.48638, -1.19918)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.64638, -1.19918)
 shape = SubResource("BoxShape3D_rbug0")
 
 [node name="CollisionShape3D12" type="CollisionShape3D" parent="."]
