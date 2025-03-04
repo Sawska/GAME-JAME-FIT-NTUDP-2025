@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+class_name Fox_milita
+
 const MAIN_MENU = preload("res://scenes/static/menu/main_menu.tscn")
 
 @export_group("Camera settings")
