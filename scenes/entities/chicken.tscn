@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cthp21bir2mce"]
+
+[ext_resource type="Script" path="res://scripts/entities/chicken.gd" id="1_f8n6t"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ocqai"]
+
+[node name="Chicken" type="CharacterBody3D"]
+script = ExtResource("1_f8n6t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ocqai")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ChickenTimerLabel" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ChickenTimer" type="Timer" parent="CanvasLayer"]
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 23.0
