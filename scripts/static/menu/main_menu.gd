@@ -1,7 +1,7 @@
 extends Control
 #TODO 
 const TEMP_SCENE_FOR_TESTING: Resource = preload("res://scenes/static/temp_scene_for_testing.tscn")
-# const NIGHTMAP: Resource = preload("res://scenes/static/map.tscn")
+#const NIGHTMAP: Resource = preload("res://scenes/static/nightmap.tscn")
 const FOX_HOLE: Resource = preload("res://scenes/static/fox_hole.tscn")
 
 func _ready() -> void:
