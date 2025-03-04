@@ -2,19 +2,19 @@
 
 [ext_resource type="Script" path="res://scripts/entities/actual_net.gd" id="1_ihxtt"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_j6r3i"]
+[sub_resource type="BoxMesh" id="BoxMesh_62rik"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8votv"]
 size = Vector3(1, 1, 0.13501)
 
 [node name="Node3D" type="RigidBody3D"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 collision_layer = 16
 collision_mask = 17
 script = ExtResource("1_ihxtt")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("QuadMesh_j6r3i")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.0631551, 0, 0, 0)
+mesh = SubResource("BoxMesh_62rik")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_8votv")

@@ -103,10 +103,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func shoot() -> void:
-	var net = ACTUAL_NET.instantiate()
+	var net_scale: int = 5
+	var net: Node = ACTUAL_NET.instantiate()
 	net.position = get_global_position()
 	net.rotation = $head.rotation
-	net.scale = Vector3(3,3,3)
+	net.scale = Vector3(net_scale,net_scale,net_scale)
 	net.apply_impulse($head.basis * Vector3(0, 0, 80))
 	add_sibling(net)
 

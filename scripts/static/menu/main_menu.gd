@@ -7,9 +7,13 @@ const FOX_HOLE: Resource = preload("res://scenes/static/fox_hole.tscn")
 func _ready() -> void:
 	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
-	
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_esc"):
+		get_tree().quit()
+
 func _on_btn_new_game_pressed() -> void:
-	get_tree().change_scene_to_packed(TEMP_SCENE_FOR_TESTING)
+	pass
 
 
 func _on_btn_about_authors_pressed() -> void:
@@ -26,3 +30,7 @@ func _on_btn_danyasmap_pressed() -> void:
 
 func _on_btn_cavemap_pressed() -> void:
 	get_tree().change_scene_to_packed(FOX_HOLE)
+
+
+func _on_btn_testmap_pressed() -> void:
+	get_tree().change_scene_to_packed(TEMP_SCENE_FOR_TESTING)
