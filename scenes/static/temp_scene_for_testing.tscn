@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://4mrr7je22wj4"]
 
 [ext_resource type="Script" path="res://scripts/static/temp_scene_for_testing.gd" id="1_s1834"]
-[ext_resource type="PackedScene" uid="uid://1sn1kii1k4qu" path="res://scenes/entities/fox_bot.tscn" id="2_5uh6t"]
 [ext_resource type="PackedScene" uid="uid://p5kp3djfp280" path="res://scenes/entities/chicken_bot.tscn" id="2_bm4x0"]
+[ext_resource type="PackedScene" uid="uid://diuiroppcirxi" path="res://scenes/entities/dog_bot.tscn" id="3_qskw2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_doucs"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -98,8 +98,20 @@ size = Vector3(2.92749, 0.1, 3)
 transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, -6.28984, 4.96371, -3.44438)
 size = Vector3(2.92749, 0.1, 3)
 
-[node name="Fox" parent="." instance=ExtResource("2_5uh6t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.69375, 1.70985, 4.22917)
-
 [node name="Chicken" parent="." instance=ExtResource("2_bm4x0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.63513, 0.798615, 7.52635)
+
+[node name="Chicken2" parent="." instance=ExtResource("2_bm4x0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1432, 1.81192, 1.81965)
+
+[node name="Chicken3" parent="." instance=ExtResource("2_bm4x0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.10435, 1.53569, 19.6025)
+
+[node name="Chicken4" parent="." instance=ExtResource("2_bm4x0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.6874, 2.26346, 16.4976)
+
+[node name="Chicken5" parent="." instance=ExtResource("2_bm4x0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.90201, 2.36755, 22.1867)
+
+[node name="Dog" parent="." instance=ExtResource("3_qskw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.0909, 0.934437, 10.1142)

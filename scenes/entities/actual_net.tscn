@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://biltdo0cngpp5"]
+
+[ext_resource type="Script" path="res://scripts/entities/actual_net.gd" id="1_ihxtt"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_j6r3i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8votv"]
+size = Vector3(1, 1, 0.13501)
+
+[node name="Node3D" type="RigidBody3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+collision_layer = 16
+collision_mask = 17
+script = ExtResource("1_ihxtt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_j6r3i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_8votv")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_8votv")

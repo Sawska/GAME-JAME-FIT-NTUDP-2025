@@ -3,6 +3,7 @@ extends CharacterBody3D
 class_name Fox_milita
 
 const MAIN_MENU = preload("res://scenes/static/menu/main_menu.tscn")
+const ACTUAL_NET = preload("res://scenes/entities/actual_net.tscn")
 
 @export_group("Camera settings")
 @export var MOUSE_SENS: float = 0.25
@@ -13,15 +14,15 @@ const MAIN_MENU = preload("res://scenes/static/menu/main_menu.tscn")
 @export var ROTATION: float = 12.0
 @export var JUMP_STRENGTH: float = 5.0
 
-@onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var fox_timer: Timer = $FoxTimer  # Reference to the Timer node
-@onready var fox_timer_label: Label = $CanvasLayer/FoxTimerLabel  # Reference to the Label node in CanvasLayer
-@onready var chickens_label: Label = $CanvasLayer/ChickensCaughtLabel  # Label to show chickens caught
-@onready var score_label: Label = $CanvasLayer/ScoreLabel  # Label to show score
+@onready var fox_timer_label: Label = $CanvasLayer/VBoxContainer/FoxTimerLabel  # Reference to the Label node in CanvasLayer
+@onready var chickens_label: Label = $CanvasLayer/VBoxContainer/ChickensCaughtLabel  # Label to show chickens caught
+@onready var score_label: Label = $CanvasLayer/VBoxContainer/ScoreLabel  # Label to show score
 
 var CameraInpDir: Vector2 = Vector2.ZERO
 var LastDir: Vector3 = Vector3.BACK
+var TargetAngle: float
 var Gravity : int = ProjectSettings.get_setting("physics/3d/default_gravity")
 var fox_time: float = 0.0  # Timer to track the fox's time
 var chickens_caught: int = 0  # Counter for chickens caught
@@ -77,7 +78,7 @@ func _process(delta: float) -> void:
 	
 	if MoveDir.length() > 0.2:
 		LastDir =  MoveDir
-	var TargetAngle: float = Vector3.BACK.signed_angle_to(LastDir, Vector3.UP)
+	TargetAngle = Vector3.BACK.signed_angle_to(LastDir, Vector3.UP)
 	collision_shape_3d.rotation.y = lerp_angle(collision_shape_3d.rotation.y, TargetAngle, ROTATION * delta)
 	$FoxModel.rotation.y = collision_shape_3d.rotation.y
 	
@@ -95,16 +96,30 @@ func _unhandled_input(event: InputEvent) -> void:
 			$head/SpringArm3D.spring_length = clamp($head/SpringArm3D.spring_length - 0.5, 0.0, 10.0)
 		if (Input.is_action_just_pressed("ui_scrldown")):
 			$head/SpringArm3D.spring_length = clamp($head/SpringArm3D.spring_length + 0.5, 0.0, 10.0)
+		if (Input.is_action_just_pressed("ui_lmb")):
+			LastDir = $head.basis*Vector3(0,0,1)
+			shoot()
+
+func shoot() -> void:
+	var net = ACTUAL_NET.instantiate()
+	net.position = get_global_position()
+	net.rotation = $head.rotation
+	net.scale = Vector3(3,3,3)
+	net.apply_impulse($head.basis * Vector3(0, 0, 80))
+	add_sibling(net)
 
 # Function to catch a chicken
 func catch_chicken():
 	chickens_caught += 1
+	print("1")
 	update_chickens_label()
 
 # Update the chickens caught label in the UI, if it exists
 func update_chickens_label():
+	print("2")
 	if chickens_label:
 		chickens_label.text = "Chickens caught: " + str(chickens_caught)
+		print(chickens_caught)
 
 # Function to calculate the score based on chickens caught and time survived
 func calculate_score():
