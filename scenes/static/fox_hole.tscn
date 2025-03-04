@@ -122,7 +122,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.666522, 1.081, 3.0666)
 shape = SubResource("BoxShape3D_u48b2")
 
 [node name="Fox" parent="." instance=ExtResource("3_ig3b4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.3253, 14.4488, -88.3436)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Fox"]
 
