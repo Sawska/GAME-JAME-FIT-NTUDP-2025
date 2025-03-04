@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b28qx0asi0see"]
+
+[ext_resource type="PackedScene" uid="uid://5u1fxklb4ssn" path="res://resources/models/FoxHoleOutside/FoxHoleOutside.glb" id="1_x8wpc"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nifb7"]
+radius = 23.0
+
+[node name="FoxHoleOutside" type="Node3D"]
+
+[node name="FoxHoleOutside" parent="." instance=ExtResource("1_x8wpc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.0744, 22.2352, 0.143553)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
+shape = SubResource("SphereShape3D_nifb7")
