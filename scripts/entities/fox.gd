@@ -31,6 +31,8 @@ func _ready():
 	$head/SpringArm3D.spring_length = CAMERA_DISTANCE
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
+	add_to_group("fox")
+	
 	# Check if fox_timer and fox_timer_label exist
 	if fox_timer:
 		fox_timer.start()  # Start the timer as soon as the fox enters the scene
@@ -43,7 +45,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	add_to_group("fox")
 	# Update the timer and label text if fox_timer and fox_timer_label exist
 	if fox_timer and fox_timer.time_left > 0:
 		fox_time += delta  # Increment the time based on the frame's delta

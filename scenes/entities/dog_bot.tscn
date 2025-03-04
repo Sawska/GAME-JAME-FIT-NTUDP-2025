@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://diuiroppcirxi"]
+
+[ext_resource type="Script" path="res://scripts/entities/yorchik_bot.gd" id="1_7guhs"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_w7dgx"]
+size = Vector3(0.49, 0.715, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6o8ci"]
+albedo_color = Color(0.614438, 0.381438, 0.322254, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bg1en"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ub31s"]
+
+[node name="Dog" type="CharacterBody3D"]
+script = ExtResource("1_7guhs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_w7dgx")
+surface_material_override/0 = SubResource("StandardMaterial3D_6o8ci")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_bg1en")
+
+[node name="FoxDetector" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FoxDetector"]
+shape = SubResource("WorldBoundaryShape3D_ub31s")

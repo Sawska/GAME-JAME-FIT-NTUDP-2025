@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://p5kp3djfp280"]
+
+[ext_resource type="Script" path="res://scripts/entities/chicken_bot.gd" id="1_55kmo"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bg1en"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ub31s"]
+
+[node name="Chicken" type="CharacterBody3D"]
+script = ExtResource("1_55kmo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_bg1en")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+physics_interpolation_mode = 1
+
+[node name="FoxDetector" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FoxDetector"]
+shape = SubResource("WorldBoundaryShape3D_ub31s")
