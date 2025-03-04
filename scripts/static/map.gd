@@ -13,5 +13,5 @@ func _ready() -> void:
 
 func spawn(player_prel) -> void:
 	var player_inst = player_prel.instantiate()
-	player_inst.position.y += 2
+	player_inst.position += Vector3(123, 3, -81)
 	add_child(player_inst)
