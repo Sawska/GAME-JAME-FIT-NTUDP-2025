@@ -43,7 +43,6 @@ func _physics_process(delta):
 			target_reached = false
 
 func set_random_target_position():
-	# Generate a random target position within a certain range
 	random_target_position = global_position + Vector3(randf_range(-10.0, 10.0), 0, randf_range(-10.0, 10.0))
 	target_reached = false
 
