@@ -3,11 +3,16 @@ extends CharacterBody3D
 class_name ChickenBot
 
 @export var speed: float = 6.0
+@export var target_reached: bool = true 
+var random_target_position: Vector3 = Vector3.ZERO
 @onready var fox_detector: Area3D = $FoxDetector
 
 func _ready():
 	# Add ChickenBot to the 'chicken_bot' group
 	add_to_group("chicken_bot")
+	
+	# Set an initial random target position
+	set_random_target_position()
 	
 	if not fox_detector:
 		print("Fox detector node not found!")
@@ -17,6 +22,7 @@ func _physics_process(delta):
 	if not fox_detector:
 		return
 
+	# Check if there are any foxes in the fox_detector's range
 	var foxes = get_foxes()
 	if foxes.size() > 0:
 		# If foxes are detected, run away from them
@@ -30,11 +36,25 @@ func _physics_process(delta):
 		flee_direction.y = 0
 		velocity = flee_direction * speed
 	else:
-		# If no foxes are detected, move in a random direction
-		var random_direction = Vector3(randf_range(-1.0, 1.0), 0, randf_range(-1.0, 1.0)).normalized()
-		velocity = random_direction * speed
+		# If no foxes are detected, move towards a random target
+		if target_reached:
+			# Set a new random target position when the current one is reached
+			set_random_target_position()
+
+		var direction_to_target = (random_target_position - global_position).normalized()
+		velocity = direction_to_target * speed
+
+		# Check if ChickenBot has reached the random target
+		if global_position.distance_to(random_target_position) < 0.5:  # Threshold to consider target reached
+			target_reached = true
+		else:
+			target_reached = false
 
 	move_and_slide()
+
+func set_random_target_position():
+	random_target_position = global_position + Vector3(randf_range(-10.0, 10.0), 0, randf_range(-10.0, 10.0))
+	target_reached = false
 
 func get_foxes():
 	var foxes = []

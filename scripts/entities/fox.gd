@@ -28,6 +28,7 @@ var fox_time: float = 0.0  # Timer to track the fox's time
 var chickens_caught: int = 0  # Counter for chickens caught
 var survival_score: int = 0
 var chicken_score: int = 0
+var chickens_in_den: int = 0  # Counter for chickens in the den
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -134,7 +135,14 @@ func update_score_label(total_score: int):
 	if score_label:
 		score_label.text = "Score: " + str(total_score)
 
-# When entering a den, update the chicken count label
-func on_enter_den():
-	update_chickens_label()  # Update chickens caught label when entering the den
-	# You can add additional logic here to display chickens in the den or other actions
+## СУКИ КОГДА ДОБАВИТЕ МОДЕЛЬКУ КУРИЦ
+## When entering a den, update the chicken count label and spawn chickens in the den
+#func on_enter_den():
+	#chickens_in_den = chickens_caught  # Set the number of chickens in the den to the number caught
+	#update_chickens_label()  # Update the chicken count label when entering the den
+	## Add chickens to the den (spawn them or activate them in the scene)
+	## For example, you could instantiate chickens based on `chickens_in_den`
+	#for i in range(chickens_in_den):
+		#var chicken = preload("res://scenes/entities/chicken.tscn").instantiate()
+		#chicken.position = Vector3(randf_range(-5, 5), 0, randf_range(-5, 5))  # Random spawn positions in the den
+		#add_child(chicken)
