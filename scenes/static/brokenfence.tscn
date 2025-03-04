@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b23obs501bc2l"]
+
+[ext_resource type="PackedScene" uid="uid://b77h7kktxpttd" path="res://resources/maps/brokenfence.glb" id="1_ct5k1"]
+
+[node name="brokenfence" type="Node3D"]
+
+[node name="brokenfence" parent="." instance=ExtResource("1_ct5k1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.303932, 0, 0.297367)
