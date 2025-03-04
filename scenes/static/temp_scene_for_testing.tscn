@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://4mrr7je22wj4"]
+[gd_scene load_steps=7 format=3 uid="uid://4mrr7je22wj4"]
 
 [ext_resource type="Script" path="res://scripts/static/temp_scene_for_testing.gd" id="1_s1834"]
+[ext_resource type="PackedScene" uid="uid://1sn1kii1k4qu" path="res://scenes/entities/fox_bot.tscn" id="2_5uh6t"]
 [ext_resource type="PackedScene" uid="uid://p5kp3djfp280" path="res://scenes/entities/chicken_bot.tscn" id="2_bm4x0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_doucs"]
@@ -31,24 +32,24 @@ operation = 1
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-size = Vector3(20, 1, 20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, -1, 18.5)
+size = Vector3(58, 1, 57)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.614615, -10)
-size = Vector3(20, 1, 4)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 18.8526, 0.614615, -10)
+size = Vector3(57.7052, 1, 4)
 
 [node name="CSGBox3D15" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.614615, 10.4059)
-size = Vector3(20, 1, 4)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 18.6697, 0.614615, 47.184)
+size = Vector3(59.3007, 1, 4)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 10, 0.614615, 0)
-size = Vector3(20, 1, 4)
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 48.0758, 0.614615, 18.554)
+size = Vector3(57.8397, 1, 4)
 
 [node name="CSGBox3D16" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -10.4059, 0.614615, 0)
-size = Vector3(20, 1, 4)
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -10.4059, 0.614615, 18.6754)
+size = Vector3(57.3507, 1, 4)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.448178, 0)
@@ -97,5 +98,8 @@ size = Vector3(2.92749, 0.1, 3)
 transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, -6.28984, 4.96371, -3.44438)
 size = Vector3(2.92749, 0.1, 3)
 
+[node name="Fox" parent="." instance=ExtResource("2_5uh6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.69375, 1.70985, 4.22917)
+
 [node name="Chicken" parent="." instance=ExtResource("2_bm4x0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10856, 0.27698, 4.83253)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.63513, 0.798615, 7.52635)

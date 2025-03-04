@@ -8,6 +8,7 @@
 size = Vector3(20, 4, 20)
 
 [node name="Chicken" type="CharacterBody3D"]
+collision_layer = 4
 script = ExtResource("1_55kmo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

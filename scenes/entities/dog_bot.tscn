@@ -10,9 +10,11 @@ albedo_color = Color(0.614438, 0.381438, 0.322254, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bg1en"]
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ub31s"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_bb2w0"]
+size = Vector3(20, 4, 20)
 
 [node name="Dog" type="CharacterBody3D"]
+collision_layer = 8
 script = ExtResource("1_7guhs")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -23,8 +25,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_6o8ci")
 shape = SubResource("SphereShape3D_bg1en")
 
 [node name="FoxDetector" type="Area3D" parent="."]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FoxDetector"]
-shape = SubResource("WorldBoundaryShape3D_ub31s")
+shape = SubResource("BoxShape3D_bb2w0")

@@ -39,7 +39,6 @@ func _physics_process(delta):
 func get_foxes():
 	var foxes = []
 	for body in fox_detector.get_overlapping_bodies():
-		print(body.get_groups())
 		if body.is_in_group("fox"):
 			foxes.append(body)
 	
