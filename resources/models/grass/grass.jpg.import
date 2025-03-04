@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlxfg1t0sel03"
-path.s3tc="res://.godot/imported/FoxHole_depositphotos_153541450-stock-photo-glass-texture-background.jpg-97c489fb176c407ef63e8758fd24a288.s3tc.ctex"
+uid="uid://34nwt4pjru1e"
+path.s3tc="res://.godot/imported/grass.jpg-c297f215608b506f0df3273ba83f592b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "517cd851cb03490594c52585c0c5f403"
-}
 
 [deps]
 
-source_file="res://resources/models/FoxHole/FoxHole_depositphotos_153541450-stock-photo-glass-texture-background.jpg"
-dest_files=["res://.godot/imported/FoxHole_depositphotos_153541450-stock-photo-glass-texture-background.jpg-97c489fb176c407ef63e8758fd24a288.s3tc.ctex"]
+source_file="res://resources/models/grass/grass.jpg"
+dest_files=["res://.godot/imported/grass.jpg-c297f215608b506f0df3273ba83f592b.s3tc.ctex"]
 
 [params]
 
