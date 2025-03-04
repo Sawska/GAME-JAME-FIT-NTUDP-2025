@@ -1,14 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://1sn1kii1k4qu"]
+[gd_scene load_steps=6 format=3 uid="uid://1sn1kii1k4qu"]
 
 [ext_resource type="Script" path="res://scripts/entities/fox_bot.gd" id="1_qn0yk"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bg1en"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1o35x"]
-size = Vector3(20, 4, 20)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_su4fn"]
-size = Vector3(20, 4, 20)
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ub31s"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_03qr1"]
 
@@ -16,25 +12,20 @@ size = Vector3(20, 4, 20)
 albedo_color = Color(1, 0.48, 0.2, 1)
 
 [node name="Fox" type="CharacterBody3D"]
-collision_layer = 2
 script = ExtResource("1_qn0yk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_bg1en")
 
 [node name="FoxDetector" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FoxDetector"]
-shape = SubResource("BoxShape3D_1o35x")
+shape = SubResource("WorldBoundaryShape3D_ub31s")
 
 [node name="ChickenDetector" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ChickenDetector"]
-shape = SubResource("BoxShape3D_su4fn")
+shape = SubResource("WorldBoundaryShape3D_ub31s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_03qr1")
