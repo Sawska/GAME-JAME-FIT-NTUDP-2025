@@ -23,7 +23,7 @@ func spawn(player_prel) -> void:
 	var player_inst = player_prel.instantiate()
 	player_inst.position += Vector3(-32, 3, -76)
 	player_inst.SOMETEXT = "Знайдіть паркан"
-	player_inst.Life_time = 2
+	player_inst.Life_time = 60
 	add_child(player_inst)
 
 
@@ -48,7 +48,7 @@ func _on_area_inside_body_entered(body: Node3D) -> void:
 		fox.COUNTER = true
 		fox.check_for_counter()
 		fox.CANCONTROL = true
-		spawn_animals_day(50,5, 2)
+		spawn_animals_day(50,5, 60)
 		GameStarted = true
 
 func spawn_inside_fence(bot: PackedScene, Life_time: float) -> void:
