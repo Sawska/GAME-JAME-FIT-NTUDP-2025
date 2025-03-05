@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://couaidguva1ei"]
+
+[ext_resource type="Texture2D" uid="uid://blga23yecwjcc" path="res://resources/models/Pine Tree/PineTree_1673337364_grizly-club-p-besshovnaya-tekstura-khvoi-26.jpg" id="1_kpiur"]
+
+[resource]
+albedo_texture = ExtResource("1_kpiur")
+uv1_scale = Vector3(30, 30, 30)

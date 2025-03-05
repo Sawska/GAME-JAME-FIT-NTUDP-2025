@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4g5u2dnhmk7y"]
+
+[ext_resource type="PackedScene" uid="uid://c4v4rd3ok63iy" path="res://resources/models/Pine Tree/PineTree.glb" id="1_506xj"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_smqhe"]
+height = 2.03771
+radius = 1.11841
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pw6v6"]
+height = 0.448327
+radius = 2.20831
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_w2o3m"]
+height = 14.0
+radius = 0.3885
+
+[node name="PineTree" type="Node3D"]
+
+[node name="PineTree" parent="." instance=ExtResource("1_506xj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07264, 0, -2.84562)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07264, 0, -2.84562)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.658814, 0)
+shape = SubResource("CylinderShape3D_smqhe")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00536525, -2.02717, 0.129504)
+shape = SubResource("CylinderShape3D_pw6v6")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00398278, 6.67429, -0.0556884)
+shape = SubResource("CylinderShape3D_w2o3m")
