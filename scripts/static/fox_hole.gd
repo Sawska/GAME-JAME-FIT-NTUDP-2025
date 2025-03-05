@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 func spawn(player_prel) -> void:
-	var player_inst = player_prel.instantiate()
+	var player_inst = load("res://scenes/entities/fox.tscn").instantiate()
 	player_inst.position.y += 2
 	add_child(player_inst)
 	print("success")

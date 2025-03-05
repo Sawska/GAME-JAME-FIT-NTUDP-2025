@@ -20,7 +20,7 @@ func _ready() -> void:
 	#pass
 
 func spawn(player_prel) -> void:
-	var player_inst = player_prel.instantiate()
+	var player_inst = load("res://scenes/entities/fox.tscn").instantiate()
 	player_inst.position += Vector3(-32, 3, -76)
 	player_inst.SOMETEXT = "Знайдіть паркан"
 	player_inst.Life_time = 60
