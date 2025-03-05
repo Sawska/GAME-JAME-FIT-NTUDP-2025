@@ -4,6 +4,7 @@ class_name Fox_milita
 
 const MAIN_MENU = preload("res://scenes/static/menu/main_menu.tscn")
 const ACTUAL_NET = preload("res://scenes/entities/actual_net.tscn")
+const FOX_HOLE: Resource = preload("res://scenes/static/fox_hole.tscn")
 
 @export var EndedGame: bool = false
 @export var COUNTER: bool = false
@@ -210,3 +211,10 @@ func update_score_label(total_score: int):
 		#var chicken = preload("res://scenes/entities/chicken.tscn").instantiate()
 		#chicken.position = Vector3(randf_range(-5, 5), 0, randf_range(-5, 5))  # Random spawn positions in the den
 		#add_child(chicken)
+
+
+func _on_sobakadetector_body_entered(body: Node3D) -> void:
+	if body.is_in_group("dog_bot"):
+		await show_some_temp_text("Вас спіймали, спробуйте ще раз", 5)
+		show_black_screen()
+		get_tree().change_scene_to_packed(FOX_HOLE)

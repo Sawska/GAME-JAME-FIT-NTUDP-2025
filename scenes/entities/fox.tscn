@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://0jlvbngjxeyt"]
+[gd_scene load_steps=6 format=3 uid="uid://0jlvbngjxeyt"]
 
 [ext_resource type="Script" path="res://scripts/entities/fox.gd" id="1_s5isx"]
 [ext_resource type="PackedScene" uid="uid://b5slytlxgya7x" path="res://resources/models/FoxTrot/FoxTrot.glb" id="2_i7jf8"]
@@ -7,6 +7,9 @@
 radius = 0.546396
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ocf50"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hc1v1"]
+size = Vector3(2.63452, 2.81665, 2.60352)
 
 [node name="Fox" type="CharacterBody3D"]
 collision_layer = 2
@@ -70,3 +73,10 @@ theme_override_font_sizes/font_size = 19
 horizontal_alignment = 1
 
 [node name="FoxTimer" type="Timer" parent="."]
+
+[node name="SOBAKADETECTOR" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SOBAKADETECTOR"]
+shape = SubResource("BoxShape3D_hc1v1")
+
+[connection signal="body_entered" from="SOBAKADETECTOR" to="." method="_on_sobakadetector_body_entered"]
