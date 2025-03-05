@@ -118,7 +118,6 @@ func show_black_screen() -> void:
 	CANCONTROL = false
 	$CanvasLayer/ColorRect.visible = true
 	for i in 101:
-		await get_tree().create_timer(0.01).timeout
 		$CanvasLayer/ColorRect.color = Color(0,0,0,(i/100.0))
 
 func hide_black_screen() -> void:

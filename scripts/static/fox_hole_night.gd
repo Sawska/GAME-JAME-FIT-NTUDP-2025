@@ -1,6 +1,7 @@
 extends StaticBody3D
 
 const MAP_NIGHT = preload("res://scenes/static/map_night.tscn")
+const FOX = preload("res://scenes/entities/fox.tscn")
 
 func _ready() -> void:
 	spawn()
@@ -15,7 +16,6 @@ func _process(delta: float) -> void:
 	pass
 
 func spawn() -> void:
-	var player_inst = load("res://scenes/entities/fox.tscn").instantiate()
-	player_inst.position.y += 2
+	var player_inst = FOX.instantiate()
 	add_child(player_inst)
 	print("success")
