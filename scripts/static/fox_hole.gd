@@ -20,6 +20,10 @@ func spawn(player_prel) -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("fox"):
-		body.get_tree().get_first_node_in_group("fox").CANCONTROL = false
-		await body.get_tree().get_first_node_in_group("fox").show_black_screen()
+		var fox = body.get_tree().get_first_node_in_group("fox")
+		fox.CANCONTROL = false
+		fox.velocity = Vector3(0,0,0)
+		fox.KeyboardInput = Vector2(0,0)
+		fox.velocity = Vector3(0,0,0)
+		await fox.show_black_screen()
 	get_tree().change_scene_to_packed(MAP)

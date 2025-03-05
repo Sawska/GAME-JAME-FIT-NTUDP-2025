@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 class_name Yorchik
 
+@export var Life_time: float = 60
 @export var bark_range: float = 10.0
 @onready var fox_detector: Area3D = $FoxDetector
 var last_bark_position: Vector3 = Vector3.ZERO
@@ -12,6 +13,7 @@ var target_reached: bool = true  # Flag to check if the target is reached
 func _ready():
 	# Set an initial random target position
 	set_random_target_position()
+	add_to_group("dog_bot")
 
 func _physics_process(delta):
 	# Check if there are any foxes in the fox_detector's range

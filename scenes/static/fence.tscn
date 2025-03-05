@@ -1,12 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://sevxj0csyd87"]
+[gd_scene load_steps=3 format=3 uid="uid://sevxj0csyd87"]
 
 [ext_resource type="PackedScene" uid="uid://bnw7tvl27xc1i" path="res://resources/maps/solowhitePicketFence.glb" id="1_ctgna"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_redy0"]
-size = Vector3(0.465515, 3.6933, 0.429199)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_lwcgq"]
-size = Vector3(7.16943, 0.642059, 0.258545)
+[sub_resource type="BoxShape3D" id="BoxShape3D_3lqqd"]
+size = Vector3(8.05835, 3.79602, 1)
 
 [node name="fence" type="Node3D"]
 
@@ -14,23 +11,9 @@ size = Vector3(7.16943, 0.642059, 0.258545)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.90891, 0, 1.00316)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+collision_layer = 255
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.56443, 1.70895, 1.00254)
-shape = SubResource("BoxShape3D_redy0")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.89898, 1.70895, 1.00254)
-shape = SubResource("BoxShape3D_redy0")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.203857, 0.757156, 1.00181)
-shape = SubResource("BoxShape3D_lwcgq")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.203857, 1.79629, 1.00181)
-shape = SubResource("BoxShape3D_lwcgq")
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.203857, 2.85214, 1.00181)
-shape = SubResource("BoxShape3D_lwcgq")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.181486, 1.62789, 0)
+shape = SubResource("BoxShape3D_3lqqd")

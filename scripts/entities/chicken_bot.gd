@@ -3,15 +3,16 @@ extends CharacterBody3D
 class_name ChickenBot
 
 @export var speed: float = 6.0
-@export var target_reached: bool = true 
+@export var target_reached: bool = true
+@export var Life_time: float = 60
 var random_target_position: Vector3 = Vector3.ZERO
 @onready var fox_detector: Area3D = $FoxDetector
+var fox_time: float = 0.0
+
 
 func _ready():
 	# Add ChickenBot to the 'chicken_bot' group
 	add_to_group("chicken_bot")
-	
-	# Set an initial random target position
 	set_random_target_position()
 	
 	if not fox_detector:
@@ -21,7 +22,10 @@ func _ready():
 func _physics_process(delta):
 	if not fox_detector:
 		return
-
+	if fox_time > Life_time:
+		queue_free()
+	else:
+		fox_time += delta 
 	# Check if there are any foxes in the fox_detector's range
 	var foxes = get_foxes()
 	if foxes.size() > 0:

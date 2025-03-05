@@ -5,14 +5,16 @@ class_name Fox_milita
 const MAIN_MENU = preload("res://scenes/static/menu/main_menu.tscn")
 const ACTUAL_NET = preload("res://scenes/entities/actual_net.tscn")
 
+@export var EndedGame: bool = false
 @export var COUNTER: bool = false
 @export var CANCONTROL: bool = false
 @export var SOMETEXT: String = "Ви - Маленька лисичка \n Знайдіть вихід з печери"
+@export var Life_time: float = 60
 @export_group("Camera settings")
 @export var MOUSE_SENS: float = 0.25
 @export var CAMERA_DISTANCE: float = 0
 @export_group("Movement settings")
-@export var SPEED: float = 8.0
+@export var SPEED: float = 40.0
 @export var ACCELERATION: float = 20.0
 @export var ROTATION: float = 12.0
 @export var JUMP_STRENGTH: float = 7.0
@@ -58,7 +60,15 @@ func _process(delta: float) -> void:
 		fox_time += delta  # Increment the time based on the frame's delta
 		if fox_timer_label:
 			fox_timer_label.text = "Time: " + str(int(fox_time)) + " sec"  # Update the label with the time
-
+	
+	if fox_time > Life_time and !EndedGame:
+		EndedGame = true
+		CANCONTROL = false
+		velocity = Vector3(0,0,0)
+		KeyboardInput = Vector2(0,0)
+		await show_some_temp_text("Час закінчився\nВіднесіть " + str(chickens_caught) + " курочок собі у нору")
+		CANCONTROL = true
+	
 	# Calculate the score
 	calculate_score()
 
@@ -132,11 +142,15 @@ func show_black_screen() -> void:
 		await get_tree().create_timer(0.01).timeout
 		$CanvasLayer/ColorRect.color = Color(0,0,0,(i/100.0))
 
+func show_some_temp_text(some_text: String = "Change this text", duration: int = 3) -> void:
+	await show_some_text(some_text,3)
+	await hide_some_text()
 
 func check_for_counter() ->void:
 	if !COUNTER:
 		$CanvasLayer/VBoxContainer.visible = COUNTER
 	else:
+		$CanvasLayer/VBoxContainer.visible = COUNTER
 		if fox_timer:
 			fox_timer.start()  # Start the timer as soon as the fox enters the scene
 		if chickens_label:
