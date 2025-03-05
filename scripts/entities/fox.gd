@@ -15,7 +15,7 @@ const FOX_HOLE_NIGHT = preload("res://scenes/static/fox_hole_night.tscn")
 @export var MOUSE_SENS: float = 0.25
 @export var CAMERA_DISTANCE: float = 0
 @export_group("Movement settings")
-@export var SPEED: float = 40.0
+@export var SPEED: float = 10.0
 @export var ACCELERATION: float = 20.0
 @export var ROTATION: float = 12.0
 @export var JUMP_STRENGTH: float = 7.0

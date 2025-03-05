@@ -4,7 +4,7 @@ const FOX = preload("res://scenes/entities/fox.tscn")
 const CHICKEN_BOT = preload("res://scenes/entities/chicken_bot.tscn")
 const DOG_BOT = preload("res://scenes/entities/dog_bot.tscn")
 const FOX_HOLE: Resource = preload("res://scenes/static/fox_hole.tscn")
-const FOX_HOLE_NIGHT = preload("res://scenes/static/fox_hole_night.tscn")
+const FOX_HOLE_NIGHT: Resource = preload("res://scenes/static/fox_hole_night.tscn")
 
 var MainLife = 60
 var HaveAlreadySeen: bool = false

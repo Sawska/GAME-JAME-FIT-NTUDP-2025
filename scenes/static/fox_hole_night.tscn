@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://5li80gjsut35"]
+[gd_scene load_steps=11 format=3 uid="uid://5li80gjsut35"]
 
 [ext_resource type="Script" path="res://scripts/static/fox_hole_night.gd" id="1_8m434"]
 [ext_resource type="PackedScene" uid="uid://drxhjrmqyfw5y" path="res://resources/models/FoxHole/FoxHole.glb" id="2_j80i5"]
+[ext_resource type="PackedScene" uid="uid://0jlvbngjxeyt" path="res://scenes/entities/fox.tscn" id="3_mqw16"]
+[ext_resource type="PackedScene" uid="uid://ck1143yp1nnyv" path="res://resources/models/ChickenWithSweater/ChickenWithSweater.glb" id="4_ac2l4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nx1w3"]
 size = Vector3(5.49377, 16.7242, 9.81543)
@@ -57,6 +59,18 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.25461, 0.552428, 0)
 shape = SubResource("BoxShape3D_nx1w3")
 
+[node name="FoxHole2" parent="." instance=ExtResource("2_j80i5")]
+transform = Transform3D(0.169, 0, 0, 0, 0.169, 0, 0, 0, 0.169, 0, 1.265, 0)
+
+[node name="Area3D" type="Area3D" parent="FoxHole2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.2197, -11.8899, -8.43103)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FoxHole2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.25461, 0.552428, 0)
+shape = SubResource("BoxShape3D_nx1w3")
+
 [node name="CollisionShape3D9" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02368, -1.8476, -4.10712)
 shape = SubResource("BoxShape3D_e3o3k")
@@ -80,4 +94,50 @@ shape = SubResource("ConcavePolygonShape3D_bbtee")
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(-0.177514, 0, -0.984118, 0, 1, 0, 0.984118, 0, -0.177514, 4.125, 0, -1.21504)
 
+[node name="Fox" parent="." instance=ExtResource("3_mqw16")]
+transform = Transform3D(0.15026, 0, -0.988647, 0, 1, 0, 0.988647, 0, 0.15026, 4.46311, -0.538989, -1.63751)
+
+[node name="ChickenWithSweater" parent="." instance=ExtResource("4_ac2l4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.95162, -1.95486, -4.43711)
+
+[node name="ChickenWithSweater2" parent="." instance=ExtResource("4_ac2l4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75121, -1.99794, -4.43711)
+
+[node name="ChickenWithSweater3" parent="." instance=ExtResource("4_ac2l4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.620971, -1.45377, -4.43711)
+
+[node name="ChickenWithSweater4" parent="." instance=ExtResource("4_ac2l4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.524451, -1.45377, -4.43711)
+
+[node name="ChickenWithSweater11" parent="." instance=ExtResource("4_ac2l4")]
+transform = Transform3D(0.323686, 0, 0.946165, 0, 1, 0, -0.946165, 0, 0.323686, -4.17387, -1.53309, 0.903366)
+
+[node name="ChickenWithSweater12" parent="." instance=ExtResource("4_ac2l4")]
+transform = Transform3D(0.323686, 0, 0.946165, 0, 1, 0, -0.946165, 0, 0.323686, -4.54648, -2.93467, -1.29765)
+
+[node name="ChickenWithSweater5" parent="." instance=ExtResource("4_ac2l4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37418, -2.03445, -4.43711)
+
+[node name="ChickenWithSweater6" parent="." instance=ExtResource("4_ac2l4")]
+transform = Transform3D(-0.999798, 0, -0.0201223, 0, 0.420028, 0, 0.0201223, 0, -0.999798, -1.63013, 0.10571, 3.58307)
+
+[node name="ChickenWithSweater7" parent="." instance=ExtResource("4_ac2l4")]
+transform = Transform3D(-0.999798, 0, -0.0201223, 0, 0.420028, 0, 0.0201223, 0, -0.999798, -2.54755, 0.10571, 3.58307)
+
+[node name="ChickenWithSweater8" parent="." instance=ExtResource("4_ac2l4")]
+transform = Transform3D(-0.999798, 0, -0.0201223, 0, 0.420028, 0, 0.0201223, 0, -0.999798, -3.50113, 0.10571, 3.58307)
+
+[node name="ChickenWithSweater9" parent="." instance=ExtResource("4_ac2l4")]
+transform = Transform3D(-0.999798, 0, -0.0201223, 0, 0.153341, 0, 0.0201223, 0, -0.999798, -2.75707, 1.72651, 3.58307)
+
+[node name="ChickenWithSweater10" parent="." instance=ExtResource("4_ac2l4")]
+transform = Transform3D(-0.999798, 0, -0.0201223, 0, 0.153341, 0, 0.0201223, 0, -0.999798, -1.67598, 1.72651, 3.58307)
+
+[node name="ChickenWithSweater13" parent="." instance=ExtResource("4_ac2l4")]
+transform = Transform3D(-0.980109, 0, -0.198461, 0, 0.869092, 0, 0.198461, 0, -0.980109, -0.0516967, 0.668549, 3.58307)
+
+[node name="ChickenWithSweater14" parent="." instance=ExtResource("4_ac2l4")]
+transform = Transform3D(-0.980109, 0, -0.198461, 0, 0.869092, 0, 0.198461, 0, -0.980109, 0.763588, 0.330673, 3.46755)
+
 [connection signal="body_entered" from="FoxHole/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="FoxHole2/Area3D" to="." method="_on_area_3d_body_entered"]

@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://diuiroppcirxi"]
+[gd_scene load_steps=7 format=3 uid="uid://diuiroppcirxi"]
 
 [ext_resource type="Script" path="res://scripts/entities/yorchik_bot.gd" id="1_7guhs"]
+[ext_resource type="Texture2D" uid="uid://vk4vm4afno4k" path="res://resources/models/scary_dog.png" id="2_hlbld"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_w7dgx"]
-size = Vector3(0.49, 0.715, 1)
+size = Vector3(0.01, 0.715, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6o8ci"]
-albedo_color = Color(0.614438, 0.381438, 0.322254, 1)
+albedo_texture = ExtResource("2_hlbld")
+uv1_scale = Vector3(2.925, 1.96, 0)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bg1en"]
 
