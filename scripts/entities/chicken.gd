@@ -5,6 +5,7 @@ class_name Chicken_milita
 const MAIN_MENU = preload("res://scenes/static/menu/main_menu.tscn")
 const ACTUAL_NET = preload("res://scenes/entities/actual_net.tscn")
 const FOX_HOLE_NIGHT = preload("res://scenes/static/fox_hole_night.tscn")
+const FOX_HOLE = preload("res://scenes/static/fox_hole.tscn")
 const bababoi = preload("res://FINALL.tscn")
 
 @export_group("Camera settings")
@@ -151,4 +152,4 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("fox"):
 		await show_some_temp_text("Вас спіймали, спробуйте ще раз", 5)
 		await show_black_screen()
-		get_tree().change_scene_to_packed(FOX_HOLE_NIGHT)
+		get_tree().change_scene_to_packed(FOX_HOLE)

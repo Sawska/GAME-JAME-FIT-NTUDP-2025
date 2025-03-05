@@ -6,7 +6,7 @@ const DOG_BOT = preload("res://scenes/entities/dog_bot.tscn")
 const FOX_HOLE: Resource = preload("res://scenes/static/fox_hole.tscn")
 const FOX_HOLE_NIGHT: Resource = preload("res://scenes/static/fox_hole_night.tscn")
 
-var MainLife = 60
+var MainLife = 60	
 var HaveAlreadySeen: bool = false
 var HaveAlreadyFound: bool = false
 var GameStarted: bool = false

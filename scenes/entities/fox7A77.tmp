@@ -14,7 +14,6 @@ size = Vector3(2.63452, 2.81665, 2.60352)
 [node name="Fox" type="CharacterBody3D"]
 collision_layer = 2
 script = ExtResource("1_s5isx")
-CAMERA_DISTANCE = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_8bdrd")

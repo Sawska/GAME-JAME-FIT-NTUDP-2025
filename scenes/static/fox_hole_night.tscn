@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/static/fox_hole_night.gd" id="1_8m434"]
 [ext_resource type="PackedScene" uid="uid://drxhjrmqyfw5y" path="res://resources/models/FoxHole/FoxHole.glb" id="2_j80i5"]
 [ext_resource type="PackedScene" uid="uid://0jlvbngjxeyt" path="res://scenes/entities/fox.tscn" id="3_mqw16"]
-[ext_resource type="PackedScene" uid="uid://ck1143yp1nnyv" path="res://resources/models/ChickenWithSweater/ChickenWithSweater.glb" id="4_ac2l4"]
+[ext_resource type="PackedScene" uid="uid://cvc6xy5aq7ubg" path="res://resources/models/ChickenWithSweater/ChickenWithSweater.glb" id="4_ac2l4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nx1w3"]
 size = Vector3(5.49377, 16.7242, 9.81543)

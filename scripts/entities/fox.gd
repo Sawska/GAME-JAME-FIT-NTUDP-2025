@@ -110,9 +110,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			velocity.y += JUMP_STRENGTH
 	if (event is InputEventMouseButton):
 		if (Input.is_action_just_pressed("ui_scrlup")):
-			$head/SpringArm3D.spring_length = clamp($head/SpringArm3D.spring_length - 0.5, 0.0, 10.0)
+			$head/SpringArm3D.spring_length = clamp($head/SpringArm3D.spring_length - 0.5, 2.0, 10.0)
 		if (Input.is_action_just_pressed("ui_scrldown")):
-			$head/SpringArm3D.spring_length = clamp($head/SpringArm3D.spring_length + 0.5, 0.0, 10.0)
+			$head/SpringArm3D.spring_length = clamp($head/SpringArm3D.spring_length + 0.5, 2.0, 10.0)
 		if (Input.is_action_just_pressed("ui_lmb")):
 			LastDir = $head.basis*Vector3(0,0,1)
 			shoot()
