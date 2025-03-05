@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://0jlvbngjxeyt"]
+
+[ext_resource type="Script" path="res://scripts/entities/fox.gd" id="1_s5isx"]
+[ext_resource type="PackedScene" uid="uid://b5slytlxgya7x" path="res://resources/models/FoxTrot/FoxTrot.glb" id="2_i7jf8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8bdrd"]
+radius = 0.546396
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ocf50"]
+
+[node name="Fox" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("1_s5isx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_8bdrd")
+
+[node name="FoxModel" type="Node3D" parent="."]
+
+[node name="FoxTrot" parent="FoxModel" instance=ExtResource("2_i7jf8")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -1.01653, 0)
+
+[node name="head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.904485, -0.426506, 0, 0.426506, 0.904485, 0, 0.685802, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="head"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+shape = SubResource("SphereShape3D_ocf50")
+spring_length = 8.0
+
+[node name="Camera3D" type="Camera3D" parent="head/SpringArm3D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FoxTimerLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ChickensCaughtLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.27451, 0.211765, 0)
+theme_override_font_sizes/font_size = 19
+text = "Ви - Маленька лисичка
+Знайдіть вихід з печери"
+horizontal_alignment = 1
+
+[node name="FoxTimer" type="Timer" parent="."]
