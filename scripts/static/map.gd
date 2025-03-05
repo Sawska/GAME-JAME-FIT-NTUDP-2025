@@ -6,7 +6,7 @@ const DOG_BOT = preload("res://scenes/entities/dog_bot.tscn")
 const FOX_HOLE: Resource = preload("res://scenes/static/fox_hole.tscn")
 const FOX_HOLE_NIGHT = preload("res://scenes/static/fox_hole_night.tscn")
 
-var MainLife = 3
+var MainLife = 60
 var HaveAlreadySeen: bool = false
 var HaveAlreadyFound: bool = false
 var GameStarted: bool = false
@@ -75,4 +75,4 @@ func _on_area_door_body_entered(body: Node3D) -> void:
 			fox.velocity = Vector3(0,0,0)
 			fox.KeyboardInput = Vector2(0,0)
 			await fox.show_black_screen()
-			get_tree().change_scene_to_packed(FOX_HOLE_NIGHT)
+			await get_tree().change_scene_to_packed(FOX_HOLE_NIGHT)

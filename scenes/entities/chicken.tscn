@@ -17,7 +17,7 @@ script = ExtResource("1_f8n6t")
 shape = SubResource("CapsuleShape3D_ocqai")
 
 [node name="head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.999841, -0.0178538, 0, 0.0178538, 0.999841, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999841, -0.0178538, 0, 0.0178538, 0.999841, 0, 0.605257, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="head"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -55,7 +55,7 @@ theme_override_font_sizes/font_size = 19
 horizontal_alignment = 1
 
 [node name="Chicken" parent="." instance=ExtResource("2_r5ucq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7323, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.163419, -1.7323, -0.261471)
 
 [node name="Area3D" type="Area3D" parent="."]
 

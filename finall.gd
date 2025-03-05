@@ -6,11 +6,8 @@ func hide_black_screen() -> void:
 		$ColorRect.color = Color(0,0,0,(i-100.0)/-100.0)
 	$ColorRect.visible = false
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+	hide_black_screen()
+	
 func _process(delta: float) -> void:
 	pass

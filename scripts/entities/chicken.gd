@@ -95,9 +95,9 @@ func _input(event: InputEvent) -> void:
 			get_tree().change_scene_to_file("res://scenes/static/menu/main_menu.tscn")
 	if (event is InputEventMouseButton):
 		if (Input.is_action_just_pressed("ui_scrlup")):
-			$head/SpringArm3D.spring_length = clamp($head/SpringArm3D.spring_length - 0.5, 0.0, 10.0)
+			$head/SpringArm3D.spring_length = clamp($head/SpringArm3D.spring_length - 0.5, 2, 10.0)
 		if (Input.is_action_just_pressed("ui_scrldown")):
-			$head/SpringArm3D.spring_length = clamp($head/SpringArm3D.spring_length + 0.5, 0.0, 10.0)
+			$head/SpringArm3D.spring_length = clamp($head/SpringArm3D.spring_length + 0.5, 2, 10.0)
 # Update the score label
 func update_score_label(total_score: int):
 	if score_label:
