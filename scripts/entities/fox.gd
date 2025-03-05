@@ -92,6 +92,10 @@ func _process(delta: float) -> void:
 	
 	if MoveDir.length() > 0.2:
 		LastDir =  MoveDir
+		##СЮДА ДОБАВИТЬ БЕГ
+	else:
+		##СЮДА ДОБАВИТЬ СТОЯНИЕ И ПАСС ЗАКОМЕНТИТЬ
+		pass
 	TargetAngle = Vector3.BACK.signed_angle_to(LastDir, Vector3.UP)
 	collision_shape_3d.rotation.y = lerp_angle(collision_shape_3d.rotation.y, TargetAngle, ROTATION * delta)
 	$FoxModel.rotation.y = collision_shape_3d.rotation.y
@@ -143,8 +147,12 @@ func show_black_screen() -> void:
 		$CanvasLayer/ColorRect.color = Color(0,0,0,(i/100.0))
 
 func show_some_temp_text(some_text: String = "Change this text", duration: int = 3) -> void:
+	CANCONTROL = false
+	velocity = Vector3(0,0,0)
+	KeyboardInput = Vector2(0,0)
 	await show_some_text(some_text,3)
 	await hide_some_text()
+	CANCONTROL = true
 
 func check_for_counter() ->void:
 	if !COUNTER:
