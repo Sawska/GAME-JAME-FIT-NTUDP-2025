@@ -5,14 +5,17 @@ class_name Fox_milita
 const MAIN_MENU = preload("res://scenes/static/menu/main_menu.tscn")
 const ACTUAL_NET = preload("res://scenes/entities/actual_net.tscn")
 
+@export var COUNTER: bool = false
+@export var CANCONTROL: bool = false
+@export var SOMETEXT: String = "Ви - Маленька лисичка \n Знайдіть вихід з печери"
 @export_group("Camera settings")
 @export var MOUSE_SENS: float = 0.25
-@export var CAMERA_DISTANCE: float = 8.0
+@export var CAMERA_DISTANCE: float = 0
 @export_group("Movement settings")
 @export var SPEED: float = 8.0
 @export var ACCELERATION: float = 20.0
 @export var ROTATION: float = 12.0
-@export var JUMP_STRENGTH: float = 5.0
+@export var JUMP_STRENGTH: float = 7.0
 
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var fox_timer: Timer = $FoxTimer  # Reference to the Timer node
@@ -24,6 +27,7 @@ var CameraInpDir: Vector2 = Vector2.ZERO
 var LastDir: Vector3 = Vector3.BACK
 var TargetAngle: float
 var Gravity : int = ProjectSettings.get_setting("physics/3d/default_gravity")
+var KeyboardInput: Vector2 = Vector2(0,0)
 var fox_time: float = 0.0  # Timer to track the fox's time
 var chickens_caught: int = 0  # Counter for chickens caught
 var survival_score: int = 0
@@ -35,17 +39,17 @@ func _ready():
 	$head/SpringArm3D.spring_length = CAMERA_DISTANCE
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
+	check_for_counter()
+	
 	add_to_group("fox")
 	
-	# Check if fox_timer and fox_timer_label exist
-	if fox_timer:
-		fox_timer.start()  # Start the timer as soon as the fox enters the scene
-		
-	# Check if chickens_label and score_label exist
-	if chickens_label:
-		update_chickens_label()  # Update the chicken count label initially
-	if score_label:
-		update_score_label(0)  # Initialize score
+	await hide_black_screen()
+	
+	await show_some_text(SOMETEXT,3)
+	
+	await hide_some_text()
+	
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -64,7 +68,6 @@ func _process(delta: float) -> void:
 	$head.rotation.y -= CameraInpDir.x * delta
 	CameraInpDir = Vector2.ZERO
 	
-	var KeyboardInput: Vector2 = Input.get_vector("ui_a", "ui_d", "ui_w", "ui_s")
 	var forward: Vector3 = $head/SpringArm3D/Camera3D.global_basis.z
 	var right: Vector3 = $head/SpringArm3D/Camera3D.global_basis.x
 	var MoveDir: Vector3 = forward * KeyboardInput.y + right * KeyboardInput.x
@@ -88,6 +91,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if (event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED):
 		CameraInpDir = event.relative * MOUSE_SENS
 	if (event is InputEventKey and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED):
+		if CANCONTROL:
+			KeyboardInput = Input.get_vector("ui_a", "ui_d", "ui_w", "ui_s")
 		if (Input.is_action_just_pressed("ui_esc")):
 			get_tree().change_scene_to_file("res://scenes/static/menu/main_menu.tscn")
 		if Input.is_action_pressed("ui_accept") and is_on_floor():
@@ -101,6 +106,43 @@ func _unhandled_input(event: InputEvent) -> void:
 			LastDir = $head.basis*Vector3(0,0,1)
 			shoot()
 
+func hide_black_screen() -> void:
+	for i in 101:
+		await get_tree().create_timer(0.01).timeout
+		$CanvasLayer/ColorRect.color = Color(0,0,0,(i-100.0)/-100.0)
+	$CanvasLayer/ColorRect.visible = false
+	CANCONTROL = true
+
+func show_some_text(some_text: String, duration: int) -> void:
+	$CanvasLayer/Label.text = some_text
+	for i in 101:
+		await get_tree().create_timer(0.01).timeout
+		$CanvasLayer/Label.set("theme_override_colors/font_color",(Color(1.0,0.27,0.21,i/100.0)))
+	await get_tree().create_timer(duration).timeout
+
+func hide_some_text() -> void:
+	for i in 101:
+		await get_tree().create_timer(0.01).timeout
+		$CanvasLayer/Label.set("theme_override_colors/font_color",(Color(1.0,0.27,0.21,(i-100.0)/-100.0)))
+
+func show_black_screen() -> void:
+	CANCONTROL = false
+	$CanvasLayer/ColorRect.visible = true
+	for i in 101:
+		await get_tree().create_timer(0.01).timeout
+		$CanvasLayer/ColorRect.color = Color(0,0,0,(i/100.0))
+
+
+func check_for_counter() ->void:
+	if !COUNTER:
+		$CanvasLayer/VBoxContainer.visible = COUNTER
+	else:
+		if fox_timer:
+			fox_timer.start()  # Start the timer as soon as the fox enters the scene
+		if chickens_label:
+			update_chickens_label()  # Update the chicken count label initially
+		if score_label:
+			update_score_label(0)  # Initialize score
 
 func shoot() -> void:
 	var net_scale: int = 5
@@ -134,7 +176,8 @@ func update_score_label(total_score: int):
 	if score_label:
 		score_label.text = "Score: " + str(total_score)
 
-## СУКИ КОГДА ДОБАВИТЕ МОДЕЛЬКУ КУРИЦ
+## СУКИ КОГДА ДОБАВИТЕ МОДЕЛЬКУ КУРИЦ 
+## НИКОГДАИДИНАХУЙ <3
 ## When entering a den, update the chicken count label and spawn chickens in the den
 #func on_enter_den():
 	#chickens_in_den = chickens_caught  # Set the number of chickens in the den to the number caught

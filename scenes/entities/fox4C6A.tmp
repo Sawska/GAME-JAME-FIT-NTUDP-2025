@@ -11,6 +11,13 @@ radius = 0.546396
 [node name="Fox" type="CharacterBody3D"]
 collision_layer = 2
 script = ExtResource("1_s5isx")
+COUNTER = null
+MOUSE_SENS = null
+CAMERA_DISTANCE = null
+SPEED = null
+ACCELERATION = null
+ROTATION = null
+JUMP_STRENGTH = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_8bdrd")
@@ -67,6 +74,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0.27451, 0.211765, 0)
 theme_override_font_sizes/font_size = 19
+text = "Ви - Маленька лисичка
+Знайдіть вихід з печери"
 horizontal_alignment = 1
 
 [node name="FoxTimer" type="Timer" parent="."]

@@ -13,7 +13,11 @@ func _process(delta: float) -> void:
 		get_tree().quit()
 
 func _on_btn_new_game_pressed() -> void:
-	pass
+	$ColorRect.visible = true
+	for i: int in 101:
+		await get_tree().create_timer(0.01).timeout
+		$ColorRect.color = Color(0,0,0,i/100.0)
+	get_tree().change_scene_to_packed(FOX_HOLE)
 
 
 func _on_btn_about_authors_pressed() -> void:

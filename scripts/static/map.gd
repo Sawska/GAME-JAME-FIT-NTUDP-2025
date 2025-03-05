@@ -13,5 +13,6 @@ func _ready() -> void:
 
 func spawn(player_prel) -> void:
 	var player_inst = player_prel.instantiate()
-	player_inst.position += Vector3(123, 3, -81)
+	player_inst.position += Vector3(-32, 3, -76)
+	player_inst.SOMETEXT = "Знайдіть паркан"
 	add_child(player_inst)
