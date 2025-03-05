@@ -75,6 +75,8 @@ horizontal_alignment = 1
 [node name="FoxTimer" type="Timer" parent="."]
 
 [node name="SOBAKADETECTOR" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 31
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SOBAKADETECTOR"]
 shape = SubResource("BoxShape3D_hc1v1")

@@ -4,6 +4,8 @@ class_name Chicken_milita
 
 const MAIN_MENU = preload("res://scenes/static/menu/main_menu.tscn")
 const ACTUAL_NET = preload("res://scenes/entities/actual_net.tscn")
+const FOX_HOLE_NIGHT = preload("res://scenes/static/fox_hole_night.tscn")
+const bababoi = preload("res://FINALL.tscn")
 
 @export_group("Camera settings")
 @export var MOUSE_SENS: float = 0.25
@@ -19,7 +21,8 @@ const ACTUAL_NET = preload("res://scenes/entities/actual_net.tscn")
 @onready var chicken_timer_label: Label = $CanvasLayer/ChickenTimerLabel  # Метка таймера
 @onready var score_label: Label = $CanvasLayer/ScoreLabel  # Метка для счёта
 
-
+var CANCONTROL: bool = true
+var KeyboardInput: Vector2 
 var CameraInpDir: Vector2 = Vector2.ZERO
 var LastDir: Vector3 = Vector3.BACK
 var TargetAngle: float
@@ -45,6 +48,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
+	if chicken_time > 60:
+		get_tree().change_scene_to_packed(bababoi)
+	
 	# Update the chicken timer
 	if chicken_timer and chicken_timer.time_left > 0:
 		chicken_time += delta  # Увеличиваем время курочки
@@ -59,8 +66,8 @@ func _process(delta: float) -> void:
 	$head.rotation.x = clamp($head.rotation.x, -PI / 2.0, PI / 2.0)
 	$head.rotation.y -= CameraInpDir.x * delta
 	CameraInpDir = Vector2.ZERO
-	
-	var KeyboardInput: Vector2 = Input.get_vector("ui_a", "ui_d", "ui_w", "ui_s")
+	if CANCONTROL:
+		KeyboardInput = Input.get_vector("ui_a", "ui_d", "ui_w", "ui_s")
 	var forward: Vector3 = $head/SpringArm3D/Camera3D.global_basis.z
 	var right: Vector3 = $head/SpringArm3D/Camera3D.global_basis.x
 	var MoveDir: Vector3 = forward * KeyboardInput.y + right * KeyboardInput.x
@@ -93,3 +100,36 @@ func calculate_score():
 func on_enter_den():
 	# Add logic to update the number of chickens or other actions when entering the den
 	print("Chicken entered the den!")
+
+func show_black_screen() -> void:
+	CANCONTROL = false
+	$CanvasLayer/ColorRect.visible = true
+	for i in 101:
+		await get_tree().create_timer(0.01).timeout
+		$CanvasLayer/ColorRect.color = Color(0,0,0,(i/100.0))
+
+func hide_some_text() -> void:
+	for i in 101:
+		await get_tree().create_timer(0.01).timeout
+		$CanvasLayer/Label.set("theme_override_colors/font_color",(Color(1.0,0.27,0.21,(i-100.0)/-100.0)))
+
+func show_some_text(some_text: String, duration: int) -> void:
+	$CanvasLayer/Label.text = some_text
+	for i in 101:
+		await get_tree().create_timer(0.01).timeout
+		$CanvasLayer/Label.set("theme_override_colors/font_color",(Color(1.0,0.27,0.21,i/100.0)))
+	await get_tree().create_timer(duration).timeout
+
+func show_some_temp_text(some_text: String = "Change this text", duration: int = 3) -> void:
+	CANCONTROL = false
+	velocity = Vector3(0,0,0)
+	KeyboardInput = Vector2(0,0)
+	await show_some_text(some_text,3)
+	await hide_some_text()
+	CANCONTROL = true
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.is_in_group("fox"):
+		await show_some_temp_text("Вас спіймали, спробуйте ще раз", 5)
+		show_black_screen()
+		get_tree().change_scene_to_packed(FOX_HOLE_NIGHT)

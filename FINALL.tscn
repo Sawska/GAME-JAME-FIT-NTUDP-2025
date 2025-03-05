@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://3v4xo67mfemg"]
+
+[ext_resource type="Texture2D" uid="uid://5xn3ncvgcrlp" path="res://resources/ВИ ВРЯТУВАЛИ КУРОЧЕК ВІД ЗАМЕРЗАННЯ ТА ВИЖИЛИ САМІ!!!!.jpg" id="1_y5h0i"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ВиВрятувалиКурочекВідЗамерзанняТаВижилиСамі!!!!" type="Sprite2D" parent="CenterContainer"]
+scale = Vector2(0.598958, 0.60463)
+texture = ExtResource("1_y5h0i")
+centered = false

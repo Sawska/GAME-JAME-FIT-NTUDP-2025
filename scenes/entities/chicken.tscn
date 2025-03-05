@@ -1,11 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://cthp21bir2mce"]
+[gd_scene load_steps=5 format=3 uid="uid://cthp21bir2mce"]
 
 [ext_resource type="Script" path="res://scripts/entities/chicken.gd" id="1_f8n6t"]
+[ext_resource type="PackedScene" uid="uid://cadsa5eun22r4" path="res://resources/models/ChickenDefault/Chicken.glb" id="2_r5ucq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ocqai"]
+height = 2.71779
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_veebi"]
+radius = 1.44727
+height = 3.08813
 
 [node name="Chicken" type="CharacterBody3D"]
 script = ExtResource("1_f8n6t")
+MOUSE_SENS = null
+CAMERA_DISTANCE = null
+SPEED = null
+ACCELERATION = null
+ROTATION = null
+JUMP_STRENGTH = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ocqai")
@@ -22,3 +34,37 @@ offset_bottom = 23.0
 unique_name_in_owner = true
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.27451, 0.211765, 0)
+theme_override_font_sizes/font_size = 19
+horizontal_alignment = 1
+
+[node name="Chicken" parent="." instance=ExtResource("2_r5ucq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.216243, -1.39061, -0.0332532)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_veebi")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
