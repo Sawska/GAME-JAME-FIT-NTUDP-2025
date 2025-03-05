@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://4mrr7je22wj4"]
+[gd_scene load_steps=8 format=3 uid="uid://4mrr7je22wj4"]
 
 [ext_resource type="Script" path="res://scripts/static/temp_scene_for_testing.gd" id="1_s1834"]
 [ext_resource type="PackedScene" uid="uid://p5kp3djfp280" path="res://scenes/entities/chicken_bot.tscn" id="2_bm4x0"]
 [ext_resource type="PackedScene" uid="uid://diuiroppcirxi" path="res://scenes/entities/dog_bot.tscn" id="3_qskw2"]
+[ext_resource type="PackedScene" uid="uid://cthp21bir2mce" path="res://scenes/entities/chicken.tscn" id="4_3yco6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_doucs"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -115,3 +116,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.90201, 2.36755, 22.1867)
 
 [node name="Dog" parent="." instance=ExtResource("3_qskw2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.0909, 0.934437, 10.1142)
+
+[node name="Chicken6" parent="." instance=ExtResource("4_3yco6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.84002, 3.09701, 21.9616)

@@ -12,28 +12,22 @@ height = 3.08813
 
 [node name="Chicken" type="CharacterBody3D"]
 script = ExtResource("1_f8n6t")
-MOUSE_SENS = null
-CAMERA_DISTANCE = null
-SPEED = null
-ACCELERATION = null
-ROTATION = null
-JUMP_STRENGTH = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ocqai")
 
+[node name="head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999841, -0.0178538, 0, 0.0178538, 0.999841, 0, 0, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="head"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+spring_length = 8.0
+
+[node name="Camera3D" type="Camera3D" parent="head/SpringArm3D"]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ChickenTimerLabel" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
-
 [node name="ChickenTimer" type="Timer" parent="CanvasLayer"]
-
-[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
-unique_name_in_owner = true
-offset_right = 40.0
-offset_bottom = 23.0
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
@@ -43,24 +37,25 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -0.5
-offset_top = -11.5
-offset_right = 0.5
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ChickenTimerLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.27451, 0.211765, 0)
 theme_override_font_sizes/font_size = 19
 horizontal_alignment = 1
 
 [node name="Chicken" parent="." instance=ExtResource("2_r5ucq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.216243, -1.39061, -0.0332532)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7323, 0)
 
 [node name="Area3D" type="Area3D" parent="."]
 

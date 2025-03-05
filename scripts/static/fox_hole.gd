@@ -5,6 +5,9 @@ const MAP: Resource = preload("res://scenes/static/map.tscn")
 
 func _ready() -> void:
 	spawn(ENTITY)
+	var fox = get_tree().get_first_node_in_group("fox")
+	await fox.show_some_temp_text("Ви - Маленька лисичка \n Знайдіть вихід з печери")
+	
 
 
 #func _process(delta: float) -> void:

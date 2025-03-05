@@ -4,7 +4,9 @@ const FOX = preload("res://scenes/entities/fox.tscn")
 const CHICKEN_BOT = preload("res://scenes/entities/chicken_bot.tscn")
 const DOG_BOT = preload("res://scenes/entities/dog_bot.tscn")
 const FOX_HOLE: Resource = preload("res://scenes/static/fox_hole.tscn")
+const FOX_HOLE_NIGHT = preload("res://scenes/static/fox_hole_night.tscn")
 
+var MainLife = 3
 var HaveAlreadySeen: bool = false
 var HaveAlreadyFound: bool = false
 var GameStarted: bool = false
@@ -12,7 +14,8 @@ var GameStarted: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spawn(FOX)
-	
+	var fox = get_tree().get_first_node_in_group("fox")
+	fox.show_some_temp_text("Знайдіть паркан")
 	add_to_group("main_map")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,8 +25,7 @@ func _ready() -> void:
 func spawn(player_prel) -> void:
 	var player_inst = load("res://scenes/entities/fox.tscn").instantiate()
 	player_inst.position += Vector3(-32, 3, -76)
-	player_inst.SOMETEXT = "Знайдіть паркан"
-	player_inst.Life_time = 60
+	player_inst.Life_time = MainLife
 	add_child(player_inst)
 
 
@@ -48,7 +50,7 @@ func _on_area_inside_body_entered(body: Node3D) -> void:
 		fox.COUNTER = true
 		fox.check_for_counter()
 		fox.CANCONTROL = true
-		spawn_animals_day(50,5, 60)
+		spawn_animals_day(50,5, MainLife)
 		GameStarted = true
 
 func spawn_inside_fence(bot: PackedScene, Life_time: float) -> void:
@@ -73,4 +75,4 @@ func _on_area_door_body_entered(body: Node3D) -> void:
 			fox.velocity = Vector3(0,0,0)
 			fox.KeyboardInput = Vector2(0,0)
 			await fox.show_black_screen()
-			get_tree().change_scene_to_packed(FOX_HOLE)
+			get_tree().change_scene_to_packed(FOX_HOLE_NIGHT)

@@ -5,11 +5,11 @@ class_name Fox_milita
 const MAIN_MENU = preload("res://scenes/static/menu/main_menu.tscn")
 const ACTUAL_NET = preload("res://scenes/entities/actual_net.tscn")
 const FOX_HOLE: Resource = preload("res://scenes/static/fox_hole.tscn")
+const FOX_HOLE_NIGHT = preload("res://scenes/static/fox_hole_night.tscn")
 
 @export var EndedGame: bool = false
 @export var COUNTER: bool = false
 @export var CANCONTROL: bool = false
-@export var SOMETEXT: String = "Ви - Маленька лисичка \n Знайдіть вихід з печери"
 @export var Life_time: float = 60
 @export_group("Camera settings")
 @export var MOUSE_SENS: float = 0.25
@@ -47,10 +47,6 @@ func _ready():
 	add_to_group("fox")
 	
 	await hide_black_screen()
-	
-	await show_some_text(SOMETEXT,3)
-	
-	await hide_some_text()
 	
 
 
@@ -121,13 +117,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			LastDir = $head.basis*Vector3(0,0,1)
 			shoot()
 
-func hide_black_screen() -> void:
-	for i in 101:
-		await get_tree().create_timer(0.01).timeout
-		$CanvasLayer/ColorRect.color = Color(0,0,0,(i-100.0)/-100.0)
-	$CanvasLayer/ColorRect.visible = false
-	CANCONTROL = true
-
 func show_some_text(some_text: String, duration: int) -> void:
 	$CanvasLayer/Label.text = some_text
 	for i in 101:
@@ -139,6 +128,13 @@ func hide_some_text() -> void:
 	for i in 101:
 		await get_tree().create_timer(0.01).timeout
 		$CanvasLayer/Label.set("theme_override_colors/font_color",(Color(1.0,0.27,0.21,(i-100.0)/-100.0)))
+
+func hide_black_screen() -> void:
+	for i in 101:
+		await get_tree().create_timer(0.01).timeout
+		$CanvasLayer/ColorRect.color = Color(0,0,0,(i-100.0)/-100.0)
+	$CanvasLayer/ColorRect.visible = false
+	CANCONTROL = true
 
 func show_black_screen() -> void:
 	CANCONTROL = false
@@ -217,4 +213,4 @@ func _on_sobakadetector_body_entered(body: Node3D) -> void:
 	if body.is_in_group("dog_bot"):
 		await show_some_temp_text("Вас спіймали, спробуйте ще раз", 5)
 		show_black_screen()
-		get_tree().change_scene_to_packed(FOX_HOLE)
+		get_tree().change_scene_to_packed(FOX_HOLE_NIGHT)

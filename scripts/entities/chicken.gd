@@ -33,7 +33,7 @@ var chicken_score: int = 0  # Счёт за курочек
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$head/SpringArm3D.spring_length = CAMERA_DISTANCE
+	hide_black_screen()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	add_to_group("chicken_player")
@@ -50,6 +50,7 @@ func _ready():
 func _process(delta: float) -> void:
 	
 	if chicken_time > 60:
+		await show_black_screen()
 		get_tree().change_scene_to_packed(bababoi)
 	
 	# Update the chicken timer
@@ -66,8 +67,6 @@ func _process(delta: float) -> void:
 	$head.rotation.x = clamp($head.rotation.x, -PI / 2.0, PI / 2.0)
 	$head.rotation.y -= CameraInpDir.x * delta
 	CameraInpDir = Vector2.ZERO
-	if CANCONTROL:
-		KeyboardInput = Input.get_vector("ui_a", "ui_d", "ui_w", "ui_s")
 	var forward: Vector3 = $head/SpringArm3D/Camera3D.global_basis.z
 	var right: Vector3 = $head/SpringArm3D/Camera3D.global_basis.x
 	var MoveDir: Vector3 = forward * KeyboardInput.y + right * KeyboardInput.x
@@ -84,8 +83,21 @@ func _process(delta: float) -> void:
 		LastDir =  MoveDir
 	TargetAngle = Vector3.BACK.signed_angle_to(LastDir, Vector3.UP)
 	collision_shape_3d.rotation.y = lerp_angle(collision_shape_3d.rotation.y, TargetAngle, ROTATION * delta)
-	$FoxModel.rotation.y = collision_shape_3d.rotation.y
+	$Chicken.rotation.y = collision_shape_3d.rotation.y
 
+func _input(event: InputEvent) -> void:
+	if (event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED):
+		CameraInpDir = event.relative * MOUSE_SENS
+	if (event is InputEventKey and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED):
+		if CANCONTROL:
+			KeyboardInput = Input.get_vector("ui_a", "ui_d", "ui_w", "ui_s")
+		if (Input.is_action_just_pressed("ui_esc")):
+			get_tree().change_scene_to_file("res://scenes/static/menu/main_menu.tscn")
+	if (event is InputEventMouseButton):
+		if (Input.is_action_just_pressed("ui_scrlup")):
+			$head/SpringArm3D.spring_length = clamp($head/SpringArm3D.spring_length - 0.5, 0.0, 10.0)
+		if (Input.is_action_just_pressed("ui_scrldown")):
+			$head/SpringArm3D.spring_length = clamp($head/SpringArm3D.spring_length + 0.5, 0.0, 10.0)
 # Update the score label
 func update_score_label(total_score: int):
 	if score_label:
@@ -107,6 +119,13 @@ func show_black_screen() -> void:
 	for i in 101:
 		await get_tree().create_timer(0.01).timeout
 		$CanvasLayer/ColorRect.color = Color(0,0,0,(i/100.0))
+
+func hide_black_screen() -> void:
+	for i in 101:
+		await get_tree().create_timer(0.01).timeout
+		$CanvasLayer/ColorRect.color = Color(0,0,0,(i-100.0)/-100.0)
+	$CanvasLayer/ColorRect.visible = false
+	CANCONTROL = true
 
 func hide_some_text() -> void:
 	for i in 101:
@@ -131,5 +150,5 @@ func show_some_temp_text(some_text: String = "Change this text", duration: int =
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("fox"):
 		await show_some_temp_text("Вас спіймали, спробуйте ще раз", 5)
-		show_black_screen()
+		await show_black_screen()
 		get_tree().change_scene_to_packed(FOX_HOLE_NIGHT)

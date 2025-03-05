@@ -3,7 +3,8 @@ extends Node3D
 const ENTITY : Resource = preload("res://scenes/entities/fox.tscn")
 
 func _ready() -> void:
-	spawn(ENTITY)
+	#spawn(ENTITY)
+	pass
 
 
 #func _process(delta: float) -> void:

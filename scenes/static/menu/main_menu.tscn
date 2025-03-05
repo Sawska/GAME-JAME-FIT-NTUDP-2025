@@ -45,6 +45,10 @@ layout_mode = 2
 text = "Quit
 "
 
+[node name="asf" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "asf"
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
@@ -73,3 +77,4 @@ color = Color(0, 0, 0, 0)
 
 [connection signal="pressed" from="VBoxContainer/BtnNewGame" to="." method="_on_btn_new_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/BtnQuit" to="." method="_on_btn_quit_pressed"]
+[connection signal="pressed" from="VBoxContainer/asf" to="." method="_on_asf_pressed"]

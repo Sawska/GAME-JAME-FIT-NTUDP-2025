@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://3v4xo67mfemg"]
+[gd_scene load_steps=3 format=3 uid="uid://3v4xo67mfemg"]
 
+[ext_resource type="Script" path="res://finall.gd" id="1_kwut7"]
 [ext_resource type="Texture2D" uid="uid://5xn3ncvgcrlp" path="res://resources/ВИ ВРЯТУВАЛИ КУРОЧЕК ВІД ЗАМЕРЗАННЯ ТА ВИЖИЛИ САМІ!!!!.jpg" id="1_y5h0i"]
 
 [node name="Control" type="Control"]
@@ -9,6 +10,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_kwut7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 1)
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
