@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://1sn1kii1k4qu"]
 
-[ext_resource type="Script" path="res://scripts/entities/fox_bot.gd" id="1_qn0yk"]
+[ext_resource type="Script" uid="uid://txmwst2bwh67" path="res://scripts/entities/fox_bot.gd" id="1_qn0yk"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bg1en"]
 

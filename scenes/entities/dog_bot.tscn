@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://diuiroppcirxi"]
 
-[ext_resource type="Script" path="res://scripts/entities/yorchik_bot.gd" id="1_7guhs"]
+[ext_resource type="Script" uid="uid://bxkhedsog2kum" path="res://scripts/entities/yorchik_bot.gd" id="1_7guhs"]
 [ext_resource type="Texture2D" uid="uid://vk4vm4afno4k" path="res://resources/models/scary_dog.png" id="2_hlbld"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_w7dgx"]

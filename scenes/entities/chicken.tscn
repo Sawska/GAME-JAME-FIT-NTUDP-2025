@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cthp21bir2mce"]
 
-[ext_resource type="Script" path="res://scripts/entities/chicken.gd" id="1_f8n6t"]
+[ext_resource type="Script" uid="uid://c4hpq2j640h6c" path="res://scripts/entities/chicken.gd" id="1_f8n6t"]
 [ext_resource type="PackedScene" uid="uid://cadsa5eun22r4" path="res://resources/models/ChickenDefault/Chicken.glb" id="2_r5ucq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ocqai"]

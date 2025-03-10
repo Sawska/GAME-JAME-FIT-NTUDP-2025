@@ -1,10 +1,9 @@
 extends StaticBody3D
 
 const MAP_NIGHT = preload("res://scenes/static/map_night.tscn")
-const FOX = preload("res://scenes/entities/fox.tscn")
 
 func _ready() -> void:
-	spawn()
+	await spawn()
 	var fox = get_tree().get_first_node_in_group("fox")
 	await fox.show_some_temp_text("Ви врятували багато курочок\nвід злого фермера!\nЧас відпочити", 5)
 	await get_tree().create_timer(6).timeout
@@ -16,6 +15,6 @@ func _process(delta: float) -> void:
 	pass
 
 func spawn() -> void:
-	var player_inst = FOX.instantiate()
+	var player_inst = load("res://scenes/entities/fox.tscn").instantiate()
 	add_child(player_inst)
 	print("success")

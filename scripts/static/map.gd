@@ -1,19 +1,18 @@
 extends Node3D
 
-const FOX = preload("res://scenes/entities/fox.tscn")
 const CHICKEN_BOT = preload("res://scenes/entities/chicken_bot.tscn")
 const DOG_BOT = preload("res://scenes/entities/dog_bot.tscn")
 const FOX_HOLE: Resource = preload("res://scenes/static/fox_hole.tscn")
 const FOX_HOLE_NIGHT: Resource = preload("res://scenes/static/fox_hole_night.tscn")
 
-var MainLife = 60	
+var MainLife = 5
 var HaveAlreadySeen: bool = false
 var HaveAlreadyFound: bool = false
 var GameStarted: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	spawn(FOX)
+	spawn()
 	var fox = get_tree().get_first_node_in_group("fox")
 	fox.show_some_temp_text("Знайдіть паркан")
 	add_to_group("main_map")
@@ -22,10 +21,11 @@ func _ready() -> void:
 #func _process(delta: float) -> void:
 	#pass
 
-func spawn(player_prel) -> void:
+func spawn() -> void:
 	var player_inst = load("res://scenes/entities/fox.tscn").instantiate()
-	player_inst.position += Vector3(-32, 3, -76)
+	player_inst.position += Vector3(-20, 3, -63)
 	player_inst.Life_time = MainLife
+	player_inst.OnTheMap = true
 	add_child(player_inst)
 
 
@@ -50,15 +50,14 @@ func _on_area_inside_body_entered(body: Node3D) -> void:
 		fox.COUNTER = true
 		fox.check_for_counter()
 		fox.CANCONTROL = true
-		spawn_animals_day(50,5, MainLife)
+		spawn_animals_day(50,1, MainLife)
 		GameStarted = true
 
 func spawn_inside_fence(bot: PackedScene, Life_time: float) -> void:
 	var bot_instance = bot.instantiate()
 	bot_instance.Life_time = Life_time
-	bot_instance.position = Vector3(randf_range(128.0, 190.0), 0.0, randf_range(-80.0, -20.0))
+	bot_instance.position = Vector3(randf_range(100, 30), 0.0, randf_range(-76, -8))
 	add_child(bot_instance)
-
 
 func spawn_animals_day(Chickens: int, Dogs: int, Life_time: float = 60) -> void:
 	for i in Chickens:

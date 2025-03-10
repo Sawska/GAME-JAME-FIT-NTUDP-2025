@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://p5kp3djfp280"]
 
-[ext_resource type="Script" path="res://scripts/entities/chicken_bot.gd" id="1_55kmo"]
+[ext_resource type="Script" uid="uid://berj6dcsdxe33" path="res://scripts/entities/chicken_bot.gd" id="1_55kmo"]
 [ext_resource type="PackedScene" uid="uid://cadsa5eun22r4" path="res://resources/models/ChickenDefault/Chicken.glb" id="2_jbkh7"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bg1en"]

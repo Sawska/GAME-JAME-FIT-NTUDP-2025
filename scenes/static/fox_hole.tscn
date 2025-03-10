@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://43iyenrmlp87"]
 
-[ext_resource type="Script" path="res://scripts/static/fox_hole.gd" id="1_6p8kg"]
+[ext_resource type="Script" uid="uid://c6oll3pfe68k1" path="res://scripts/static/fox_hole.gd" id="1_6p8kg"]
 [ext_resource type="PackedScene" uid="uid://drxhjrmqyfw5y" path="res://resources/models/FoxHole/FoxHole.glb" id="1_187gu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nx1w3"]

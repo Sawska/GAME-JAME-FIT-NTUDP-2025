@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ccrq12eysoyje"]
 
 [ext_resource type="PackedScene" uid="uid://4mrr7je22wj4" path="res://scenes/static/temp_scene_for_testing.tscn" id="1_0810c"]
-[ext_resource type="Script" path="res://scripts/entities/fox_bot.gd" id="2_id8u0"]
+[ext_resource type="Script" uid="uid://txmwst2bwh67" path="res://scripts/entities/fox_bot.gd" id="2_id8u0"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fub6o"]
 

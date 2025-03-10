@@ -5,8 +5,10 @@ class_name Fox_milita
 const MAIN_MENU = preload("res://scenes/static/menu/main_menu.tscn")
 const ACTUAL_NET = preload("res://scenes/entities/actual_net.tscn")
 const FOX_HOLE: Resource = preload("res://scenes/static/fox_hole.tscn")
-const FOX_HOLE_NIGHT = preload("res://scenes/static/fox_hole_night.tscn")
+const MAP = preload("res://scenes/static/map.tscn")
 
+@export var Grass_offset: float = 1
+@export var OnTheMap: bool = false
 @export var EndedGame: bool = false
 @export var COUNTER: bool = false
 @export var CANCONTROL: bool = false
@@ -58,11 +60,13 @@ func _process(delta: float) -> void:
 		if fox_timer_label:
 			fox_timer_label.text = "Time: " + str(int(fox_time)) + " sec"  # Update the label with the time
 	
-	if fox_time > Life_time and !EndedGame:
+	if !EndedGame and fox_time > Life_time:
 		EndedGame = true
 		CANCONTROL = false
 		velocity = Vector3(0,0,0)
 		KeyboardInput = Vector2(0,0)
+		COUNTER = false
+		check_for_counter()
 		await show_some_temp_text("Час закінчився\nВіднесіть " + str(chickens_caught) + " курочок собі у нору")
 		CANCONTROL = true
 	
@@ -97,25 +101,46 @@ func _process(delta: float) -> void:
 	collision_shape_3d.rotation.y = lerp_angle(collision_shape_3d.rotation.y, TargetAngle, ROTATION * delta)
 	$FoxModel.rotation.y = collision_shape_3d.rotation.y
 	
+	if OnTheMap:
+		get_parent().get_node("Grass").material_override.set_shader_parameter("player_pos", global_position + Vector3(0,Grass_offset,0))
+	
 # Handle user inputs, mouse, and movement controls
-func _unhandled_input(event: InputEvent) -> void:
-	if (event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED):
-		CameraInpDir = event.relative * MOUSE_SENS
-	if (event is InputEventKey and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED):
-		if CANCONTROL:
-			KeyboardInput = Input.get_vector("ui_a", "ui_d", "ui_w", "ui_s")
-		if (Input.is_action_just_pressed("ui_esc")):
-			get_tree().change_scene_to_file("res://scenes/static/menu/main_menu.tscn")
-		if Input.is_action_pressed("ui_accept") and is_on_floor():
-			velocity.y += JUMP_STRENGTH
+func _unhandled_input(event: InputEvent) -> void:	
+	#In game?
+	if (Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED):
+		
+		#mouse movement
+		if (event is InputEventMouseMotion):
+			CameraInpDir = event.relative * MOUSE_SENS
+		
+		#keyboard buttons
+		if (event is InputEventKey):
+			if CANCONTROL:
+				KeyboardInput = Input.get_vector("ui_a", "ui_d", "ui_w", "ui_s")
+				if Input.is_action_pressed("ui_accept") and is_on_floor():
+					velocity.y += JUMP_STRENGTH
+		
+		#mouse buttons
+		if (event is InputEventMouseButton):
+			if (Input.is_action_just_pressed("ui_lmb")):
+				LastDir = $head.basis*Vector3(0,0,1)
+				shoot()
+	
+	#Not in game
+		
 	if (event is InputEventMouseButton):
 		if (Input.is_action_just_pressed("ui_scrlup")):
 			$head/SpringArm3D.spring_length = clamp($head/SpringArm3D.spring_length - 0.5, 2.0, 10.0)
 		if (Input.is_action_just_pressed("ui_scrldown")):
 			$head/SpringArm3D.spring_length = clamp($head/SpringArm3D.spring_length + 0.5, 2.0, 10.0)
-		if (Input.is_action_just_pressed("ui_lmb")):
-			LastDir = $head.basis*Vector3(0,0,1)
-			shoot()
+		if (Input.is_action_just_pressed("ui_lmb") and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE):
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	if (Input.is_action_just_pressed("ui_esc")):
+			if (Input.mouse_mode == Input.MOUSE_MODE_CAPTURED):
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			else:
+				get_tree().quit()
 
 func show_some_text(some_text: String, duration: int) -> void:
 	$CanvasLayer/Label.text = some_text
@@ -152,10 +177,8 @@ func show_some_temp_text(some_text: String = "Change this text", duration: int =
 	CANCONTROL = true
 
 func check_for_counter() ->void:
-	if !COUNTER:
-		$CanvasLayer/VBoxContainer.visible = COUNTER
-	else:
-		$CanvasLayer/VBoxContainer.visible = COUNTER
+	$CanvasLayer/VBoxContainer.visible = COUNTER
+	if COUNTER:
 		if fox_timer:
 			fox_timer.start()  # Start the timer as soon as the fox enters the scene
 		if chickens_label:
@@ -169,7 +192,7 @@ func shoot() -> void:
 	net.position = get_global_position()
 	net.rotation = $head.rotation
 	net.scale = Vector3(net_scale,net_scale,net_scale)
-	net.apply_impulse($head.basis * Vector3(0, 0, 80))
+	net.linear_velocity = Vector3($head.basis * Vector3(0, 0, 80))
 	add_sibling(net)
 
 # Function to catch a chicken
@@ -195,22 +218,9 @@ func update_score_label(total_score: int):
 	if score_label:
 		score_label.text = "Score: " + str(total_score)
 
-## СУКИ КОГДА ДОБАВИТЕ МОДЕЛЬКУ КУРИЦ 
-## НИКОГДАИДИНАХУЙ <3
-## When entering a den, update the chicken count label and spawn chickens in the den
-#func on_enter_den():
-	#chickens_in_den = chickens_caught  # Set the number of chickens in the den to the number caught
-	#update_chickens_label()  # Update the chicken count label when entering the den
-	## Add chickens to the den (spawn them or activate them in the scene)
-	## For example, you could instantiate chickens based on `chickens_in_den`
-	#for i in range(chickens_in_den):
-		#var chicken = preload("res://scenes/entities/chicken.tscn").instantiate()
-		#chicken.position = Vector3(randf_range(-5, 5), 0, randf_range(-5, 5))  # Random spawn positions in the den
-		#add_child(chicken)
-
 
 func _on_sobakadetector_body_entered(body: Node3D) -> void:
 	if body.is_in_group("dog_bot"):
 		await show_some_temp_text("Вас спіймали, спробуйте ще раз", 5)
-		show_black_screen()
-		get_tree().change_scene_to_packed(FOX_HOLE_NIGHT)
+		await show_black_screen()
+		get_tree().change_scene_to_packed(MAP)
