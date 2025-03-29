@@ -179,6 +179,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-339.436, -126.467)
 modes/cull = 2
 nodes/vertex/0/position = Vector2(1880, 560)
 nodes/vertex/2/node = SubResource("11")
